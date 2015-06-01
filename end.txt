@@ -1,37 +1,3 @@
-    <metadataclass count="1" name="Alias Colorset Class">
-      <metadata id="10141" net="1">
-        <attribute name="Name" id="10142" net="1">
-          <![CDATA[NewColorset]]>
-          <graphics count="0"/>
-        </attribute>
-        <attribute name="ID" id="10143" net="1">
-          <![CDATA[0]]>
-          <graphics count="0"/>
-        </attribute>
-        <attribute name="Comment" id="10144" net="1">
-          <![CDATA[]]>
-          <graphics count="0"/>
-        </attribute>
-        <attribute name="AliasColorsetList" type="ColList" id="10145" net="1">
-          <colList row_count="0" col_count="3" active_row="0" active_col="0">
-            <colList_head>
-              <colList_colLabel>
-                <![CDATA[]]>
-              </colList_colLabel>
-              <colList_colLabel>
-                <![CDATA[]]>
-              </colList_colLabel>
-              <colList_colLabel>
-                <![CDATA[]]>
-              </colList_colLabel>
-            </colList_head>
-            <colList_body/>
-          </colList>
-          <graphics count="0"/>
-        </attribute>
-        <graphics count="0"/>
-      </metadata>
-    </metadataclass>
     <metadataclass count="1" name="Variable Class">
       <metadata id="10151" net="1">
         <attribute name="Name" id="10152" net="1">

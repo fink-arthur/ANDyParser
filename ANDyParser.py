@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import Colours
+import Colours, Variables
 
 class Parser:
     """
@@ -9,9 +9,14 @@ class Parser:
     """
     
     def __init__(self, address):
-        self.colours = Colours.Colours()
         with open(address, 'r') as f:
             self.string = f.read()
+        self.entities = self.string.split("%%")[0].rstrip().lstrip()
+        self.potential = self.string.split("%%")[1].rstrip().lstrip()
+        self.mandatory = self.string.split("%%")[2].rstrip().lstrip()
+        
+        self.colours = Colours.Colours().makeText(self.entities, self.potential, self.mandatory)
+        self.variables = Variables.Variables().makeText(self.entities, self.potential, self.mandatory)
             
     def makeFile(self):
         with open("start.txt", 'r') as f:
@@ -19,10 +24,7 @@ class Parser:
         with open("end.txt", 'r') as f:
             end = f.read()
         with open("test.colextpn", 'w') as f:
-            entities = self.string.split("%%")[0].rstrip().lstrip()
-            potential = self.string.split("%%")[1].rstrip().lstrip()
-            mandatory = self.string.split("%%")[2].rstrip().lstrip()
-            f.write(start + "\n" + self.colours.makeText(entities, potential, mandatory) + end)
+            f.write(start + "\n" + self.colours + self.variables + end)
         return 1
         
 if __name__ == '__main__':

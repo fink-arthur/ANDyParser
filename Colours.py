@@ -11,10 +11,11 @@ class Colours:
         Returns d for an entity where d is the highest decay duration for a level
         """
         levels = line.split(":")[1].lstrip().rstrip()[1:-1].split(",")
+        print(levels)
         accumulator = int(levels[0].lstrip().rstrip())
         for i in range(1, len(levels)):
             if (accumulator < int(levels[i])):
-                accumulator = levels[i].lstrip().rstrip()
+                accumulator = int(levels[i].lstrip().rstrip())
         return accumulator
     
     def figuringDOut(self, potentialDefinition, mandatoryDefinition):
@@ -87,7 +88,7 @@ class Colours:
             accumulator += "<![CDATA[0-" + str(self.figuringDOut(potentialDefinition, mandatoryDefinition)) + "]]>\n"
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
-        # We need a color of size D so that we can create the lambdas for all the entites
+        # We need a color of size D so that we can create the lambdas for all the entites and the timers for the activities both mandatory and potential
         accumulator += "<colList_row nr=\"" + str(numberOfColours - 1) + "\">\n"
         accumulator += "<colList_col nr=\"1\">\n"
         accumulator += "<![CDATA[D]]>\n"
@@ -147,11 +148,16 @@ class Colours:
         return startString + accumulator + endString
     
     def makeText(self, entityDefinition, potentialDefinition, mandatoryDefinition):
+        """
+        Returns the text generated in the "snoopy" format for all the definitions of the colors
+        """
         # the string that contains all the unchanging data when creating the simple color sets
         startStringSimpleColor = "<metadataclass count=\"1\" name=\"Basic Colorset Class\">\n<metadata id=\"7035\" net=\"1\">\n<attribute name=\"Name\" id=\"7036\" net=\"1\">\n<![CDATA[NewColorset]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"7037\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"7038\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n"
         simpleColorSet = startStringSimpleColor + self.createSimpleColorSet(entityDefinition, potentialDefinition, mandatoryDefinition)
         # the string that contains all the unchanging data when creating a compound colored set
         startStringCompoundColor =  "<metadataclass count=\"1\" name=\"Structured Colorset Class\">\n<metadata id=\"7040\" net=\"1\">\n<attribute name=\"Name\" id=\"7041\" net=\"1\">\n<![CDATA[NewColorset]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"7042\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"7043\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n"
         compoundColorSet = startStringCompoundColor + self.createCompoundColorSet(entityDefinition)
-        return simpleColorSet + compoundColorSet
+        # the string that contains all the data for the alias color set which is unused
+        StringAliasColor = "<metadataclass count=\"1\" name=\"Alias Colorset Class\">\n<metadata id=\"11959\" net=\"1\">\n<attribute name=\"Name\" id=\"11960\" net=\"1\">\n<![CDATA[NewColorset]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"11961\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"11962\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"AliasColorsetList\" type=\"ColList\" id=\"11963\" net=\"1\">\n<colList row_count=\"0\" col_count=\"3\" active_row=\"0\" active_col=\"0\">\n<colList_head>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n</colList_head>\n<colList_body/>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n"
+        return simpleColorSet + compoundColorSet + StringAliasColor
     
