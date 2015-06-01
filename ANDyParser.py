@@ -19,7 +19,10 @@ class Parser:
         with open("end.txt", 'r') as f:
             end = f.read()
         with open("test.colextpn", 'w') as f:
-            f.write(start + "\n" + self.colours.makeText(self.string) + end)
+            entities = self.string.split("%%")[0].rstrip().lstrip()
+            potential = self.string.split("%%")[1].rstrip().lstrip()
+            mandatory = self.string.split("%%")[2].rstrip().lstrip()
+            f.write(start + "\n" + self.colours.makeText(entities, potential, mandatory) + end)
         return 1
         
 if __name__ == '__main__':
