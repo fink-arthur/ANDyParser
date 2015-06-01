@@ -87,7 +87,7 @@ class Colours:
             accumulator += "<![CDATA[0-" + str(self.figuringDOut(potentialDefinition, mandatoryDefinition)) + "]]>\n"
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
-        # We need A color of size D so that we can create the lambda for all the entites
+        # We need a color of size D so that we can create the lambdas for all the entites
         accumulator += "<colList_row nr=\"" + str(numberOfColours - 1) + "\">\n"
         accumulator += "<colList_col nr=\"1\">\n"
         accumulator += "<![CDATA[D]]>\n"
@@ -98,14 +98,60 @@ class Colours:
         endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n"
         return startString + accumulator + endString
     
-    def createCompoundCOlorSet(self, entityDefinition):
+    def creatingLambda(self, numbersOfLevel):
+        """
+        Returns the color compound that defines the lambda of an entity
+        """
+        accumulateur = "D"
+        for _ in range(1,numbersOfLevel):
+            accumulateur += ",D"
+        return accumulateur
+    
+    def creatingEntityCompound(self, entityName):
+        """
+        Returns the color compound that defines an entity
+        """
+        return "l" + entityName + ",u" + entityName + ",lambda" + entityName
+    
+    def createCompoundColorSet(self, entityDefinition):
         """
         Creates all the compound color set using the simple color set for the petri net
         """
-        print("Hello World")
-        return 1
+        numberOfEntityLines = entityDefinition.rstrip().lstrip().count("\n") + 1
+        numberOfColours = 2 * numberOfEntityLines
+        lines = entityDefinition.rstrip().lstrip().split("\n")
+        startString = "<attribute name=\"StructuredColorsetList\" type=\"ColList\" id=\"7044\" net=\"1\">\n<colList row_count=\"" + str(numberOfColours) + "\" col_count=\"6\" active_row=\"0\" active_col=\"0\">\n<colList_head>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n</colList_head>\n<colList_body>"
+        accumulator = ""
+        
+        for i in range(numberOfEntityLines):
+            # A loop to create the compound colors that will be used to define the lambdas of all the entities
+            splittedLine = lines[i].split(":")
+            accumulator += "<colList_row nr=\"" + str(i) + "\">\n"
+            accumulator += "<colList_col nr=\"0\">\n"
+            accumulator += "<![CDATA[" + "lambda" + splittedLine[0].rstrip().lstrip() + "]]>\n"
+            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[product]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
+            accumulator += "<![CDATA[" + self.creatingLambda(splittedLine[1].count(",") + 1) + "]]>"
+            accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"5\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
+        
+        for i in range(numberOfEntityLines):
+            # A loop to create the compound colors that will be used to define each entities
+            splittedLine = lines[i].split(":")
+            accumulator += "<colList_row nr=\"" + str(i + numberOfEntityLines) + "\">\n"
+            accumulator += "<colList_col nr=\"0\">\n"
+            accumulator += "<![CDATA[" + splittedLine[0].rstrip().lstrip() + "]]>\n"
+            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[product]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
+            accumulator += "<![CDATA[" + self.creatingEntityCompound(splittedLine[0].rstrip().lstrip()) + "]]>"
+            accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"5\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
+        
+        endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n"
+        return startString + accumulator + endString
     
     def makeText(self, entityDefinition, potentialDefinition, mandatoryDefinition):
         # the string that contains all the unchanging data when creating the simple color sets
         startStringSimpleColor = "<metadataclass count=\"1\" name=\"Basic Colorset Class\">\n<metadata id=\"7035\" net=\"1\">\n<attribute name=\"Name\" id=\"7036\" net=\"1\">\n<![CDATA[NewColorset]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"7037\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"7038\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n"
-        return startStringSimpleColor + self.createSimpleColorSet(entityDefinition, potentialDefinition, mandatoryDefinition)
+        simpleColorSet = startStringSimpleColor + self.createSimpleColorSet(entityDefinition, potentialDefinition, mandatoryDefinition)
+        # the string that contains all the unchanging data when creating a compound colored set
+        startStringCompoundColor =  "<metadataclass count=\"1\" name=\"Structured Colorset Class\">\n<metadata id=\"7040\" net=\"1\">\n<attribute name=\"Name\" id=\"7041\" net=\"1\">\n<![CDATA[NewColorset]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"7042\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"7043\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n"
+        compoundColorSet = startStringCompoundColor + self.createCompoundColorSet(entityDefinition)
+        return simpleColorSet + compoundColorSet
+    
