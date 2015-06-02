@@ -11,7 +11,6 @@ class Colours:
         Returns d for an entity where d is the highest decay duration for a level
         """
         levels = line.split(":")[1].lstrip().rstrip()[1:-1].split(",")
-        print(levels)
         accumulator = int(levels[0].lstrip().rstrip())
         for i in range(1, len(levels)):
             if (accumulator < int(levels[i])):
@@ -42,9 +41,7 @@ class Colours:
         Creates all the simple color set needed for the petri net
         """
         numberOfEntityLines = entityDefinition.rstrip().lstrip().count("\n") + 1
-        numberOfPotentialLines = potentialDefinition.rstrip().lstrip().count("\n") + 1
-        numberOfMandatoryLines = mandatoryDefinition.rstrip().lstrip().count("\n") + 1
-        numberOfColours = 2 * numberOfEntityLines + numberOfPotentialLines + numberOfMandatoryLines + 1
+        numberOfColours = 2 * numberOfEntityLines + 1
         lines = entityDefinition.rstrip().lstrip().split("\n")
         startString =  "<attribute name=\"ColorsetList\" type=\"ColList\" id=\"7039\" net=\"1\">\n<colList row_count=\"" + str(numberOfColours) + "\" col_count=\"5\" active_row=\"0\" active_col=\"0\">\n<colList_head>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n</colList_head>\n<colList_body>\n"
         accumulator = ""
@@ -66,26 +63,6 @@ class Colours:
             accumulator += "<![CDATA[" + "u" + lines[i].split(":")[0].rstrip().lstrip() + "]]>\n"
             accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
             accumulator += "<![CDATA[0-" + str(self.figuringdOut(lines[i])) + "]]>\n"
-            accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
-        
-        for i in range(numberOfPotentialLines):
-            # A loop to create the colors that will define how long since a potential activity was fired
-            accumulator += "<colList_row nr=\"" + str(i + 2 * numberOfEntityLines) + "\">\n"
-            accumulator += "<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "alpha" + str(i) + "]]>\n"
-            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
-            accumulator += "<![CDATA[0-" + str(self.figuringDOut(potentialDefinition, mandatoryDefinition)) + "]]>\n"
-            accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
-        
-        # index at which the row count will start
-        index = 2 * numberOfEntityLines + numberOfPotentialLines
-        for i in range(numberOfMandatoryLines):
-            # A loop to create the colors that will define how long since a mandatory activity was fired
-            accumulator += "<colList_row nr=\"" + str(i + index) + "\">\n"
-            accumulator += "<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "beta" + str(i) + "]]>\n"
-            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
-            accumulator += "<![CDATA[0-" + str(self.figuringDOut(potentialDefinition, mandatoryDefinition)) + "]]>\n"
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
         # We need a color of size D so that we can create the lambdas for all the entites and the timers for the activities both mandatory and potential
