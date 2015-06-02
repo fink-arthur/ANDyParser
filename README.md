@@ -9,35 +9,35 @@ This parser takes as an input a file, that must follow these guidelines:
 #### Entities
 
 All the entities must be defined in one block, with a name and a decay duration for each of their level
- \nexample:\n
+ example:
  
-lacI : [0,5,8]\n
-tetR : [0,1,2,3,4]\n
-cI : [0,2]\n
+lacI : [0,5,8]
+tetR : [0,1,2,3,4]
+cI : [0,2]
  
  
 #### Potential activities 
  
 The next element that needs to be defined are potential activities, we seperate them from the entities by using "%%".
 They must all be defined in one block and must contain the activators, inhibitors adn results as well as the duration
- \nexample:\n
+ example:
  
-();((cI,1)) -2-> ((tetR,+1))\n
-((lacI,2),(tetR,3));((cI,1)) -3-> ((cI,+1))\n
+();((cI,1)) -2-> ((tetR,+1))
+((lacI,2),(tetR,3));((cI,1)) -3-> ((cI,+1))
  
 #### Mandatory activities
  
 They are defined in the same way as the potential ones but must be separated with once again "%%"
- \nexample:\n
+ example:
  
-();() -1-> ((tetR,+2))\n
-((tetR,1));() -2-> ((tetR,-2))\n
+();() -1-> ((tetR,+2))
+((tetR,1));() -2-> ((tetR,-2))
 
 #### Initial marking
 
 The inital marking will define at what level each entity will begin.
 It is seprated from the mandatory activities by "%%", and definied in one block
- \nexample:\n
+ example:
  
 (tetR,1)
 (cI,0)
