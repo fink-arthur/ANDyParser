@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import Colours, Variables
+import Colours, Variables, Places
 
 class Parser:
     """
@@ -10,13 +10,14 @@ class Parser:
     
     def __init__(self, address):
         with open(address, 'r') as f:
-            self.string = f.read()
-        self.entities = self.string.split("%%")[0].rstrip().lstrip()
-        self.potential = self.string.split("%%")[1].rstrip().lstrip()
-        self.mandatory = self.string.split("%%")[2].rstrip().lstrip()
+            self.string = f.read().split("%%")
+        self.entities = self.string[0].rstrip().lstrip()
+        self.potential = self.string[1].rstrip().lstrip()
+        self.mandatory = self.string[2].rstrip().lstrip()
         
-        self.colours = Colours.Colours().makeText(self.entities, self.potential, self.mandatory)
-        self.variables = Variables.Variables().makeText(self.entities, self.potential, self.mandatory)
+        self.colours = Colours.Colours(self.entities, self.potential, self.mandatory).makeText()
+        self.variables = Variables.Variables(self.entities, self.potential, self.mandatory).makeText()
+        self.places = Places.Places(self.entities, self.potential, self.mandatory).makeText()
             
     def makeFile(self):
         with open("start.txt", 'r') as f:
@@ -24,7 +25,7 @@ class Parser:
         with open("end.txt", 'r') as f:
             end = f.read()
         with open("test.colextpn", 'w') as f:
-            f.write(start + "\n" + self.colours + self.variables + end)
+            f.write(self.places + start + "\n" + self.colours + self.variables + end)
         return 1
         
 if __name__ == '__main__':

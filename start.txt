@@ -1,9 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="/xsl/spped2svg.xsl"?>
-<Snoopy version="2" revision="1.13">
-  <netclass name="Colored Extended Petri Net"/>
-  <nodeclasses count="4">
-    <nodeclass count="0" name="Place"/>
     <nodeclass count="0" name="Transition"/>
     <nodeclass count="0" name="Coarse Place"/>
     <nodeclass count="0" name="Coarse Transition"/>
