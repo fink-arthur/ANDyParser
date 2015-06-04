@@ -4,7 +4,7 @@ import re
 
 class Transitions:
     """
-    This class will generate all the text in the correct "snoopy" format to initialize
+    This class will generate all the text in the correct xml format to initialize
     all the transitions that will be used by the petri net
     """
     
@@ -16,7 +16,10 @@ class Transitions:
         self.numberOfTransitions = (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + 1
         self.iteratorNumberOfTransitions = iter(range(self.numberOfTransitions))
         
-    def activiatorStringToGuard(self, string, delta):
+    def activatorStringToGuard(self, string, delta):
+        """
+        Returns a string that is a guard for the activator in string
+        """
         name = string.split(",")[0]
         level = string.split(",")[1]
         accumulator = ""
@@ -25,6 +28,9 @@ class Transitions:
         return accumulator
     
     def inhibitorStringToGuard(self, string, delta):
+        """
+        Returns a string that is a guard for the inhibitor in string
+        """
         name = string.split(",")[0]
         level = string.split(",")[1]
         accumulator = ""
@@ -33,6 +39,9 @@ class Transitions:
         return accumulator
     
     def stringToGuard(self, string, definitionNumber):
+        """
+        Returns the guard that will be used by the transitions for the activity contained in string
+        """
         activatorsAndInhibitors = string.split("-")[0]
         delta = string.split("-")[1]
         activators = activatorsAndInhibitors.split(";")[0]
@@ -40,15 +49,23 @@ class Transitions:
         rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
         accumulator = ""
         for i in re.findall(rePattern, activators):
-            accumulator += self.activiatorStringToGuard(i, delta)
+            accumulator += self.activatorStringToGuard(i, delta)
         for i in re.findall(rePattern, inhibitors):
             accumulator += self.inhibitorStringToGuard(i, delta)
         return accumulator + "ptalpha" + str(definitionNumber) + ">=" + string.split("-")[1]
     
-    def createGraphicPreferences(self, identifier):
+    def createGraphicPreferences(self, identifier, definitionNumber):
+        """
+        Returns the text in xml format to initialize all the graphic preference of a transition
+        (this is used both by the potential and mandatory activities function)
+        """
+        if (definitionNumber >= 0):
+            name = "talpha" + str(definitionNumber)
+        else:
+            name = "tbeta"
         accumulator = ""
         accumulator += "<node identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
-        accumulator +="<attribute name=\"Name\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[]]>\n"
+        accumulator +="<attribute name=\"Name\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n"
         accumulator += "<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
@@ -66,6 +83,9 @@ class Transitions:
         return accumulator
     
     def createPotentialGuard(self, identifier, string, definitionNumber):
+        """
+        Returns a text in the xml format for the correct guard of a potential activity
+        """
         accumulator = ""
         accumulator += "<attribute name=\"GuardList\" type=\"ColList\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
         accumulator += "<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
@@ -83,10 +103,16 @@ class Transitions:
         return accumulator
     
     def makePotentialTransition(self, potentialDef, definitionNumber):
+        """
+        Returns the text in xml format to initialize a transition for a potential activity
+        """
         identifier = self.iterator.next()
-        return self.createGraphicPreferences(identifier) + self.createPotentialGuard(identifier, potentialDef, definitionNumber)
+        return self.createGraphicPreferences(identifier, definitionNumber) + self.createPotentialGuard(identifier, potentialDef, definitionNumber)
     
     def createMandatoryGuard(self, identifier):
+        """
+        Returns a text in the xml format for the correct guard of a mandatory activity
+        """
         accumulator = ""
         accumulator += "<attribute name=\"GuardList\" type=\"ColList\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
         accumulator += "<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
@@ -104,10 +130,16 @@ class Transitions:
         return accumulator
     
     def makeMandatoryTransition(self):
+        """
+        Returns the text in xml format to initialize a transition for a mandatory activity
+        """
         identifier = self.iterator.next()
-        return self.createGraphicPreferences(identifier) + self.createMandatoryGuard(identifier)
+        return self.createGraphicPreferences(identifier, -1) + self.createMandatoryGuard(identifier)
     
     def makeText(self):
+        """
+        Returns the text generated in the xml format for all the definitions of the transitions (potential + mandatory)
+        """
         startTransitions = "<nodeclass count=\"" + str(self.numberOfTransitions) + "\" name=\"Transition\">\n"
         endTransitions = "</nodeclass>\n"
         accumulator = ""

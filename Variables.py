@@ -2,7 +2,7 @@
 
 class Variables:
     """
-    This class will generate all the text in the correct "snoopy" format to create
+    This class will generate all the text in the correct xml format to create
     all the variables that will be used by the petri net
     """
 
@@ -88,7 +88,7 @@ class Variables:
     
     def makeText(self):
         """
-        Returns the text generated in the "snoopy" format for all the definitions of the variables (entities + activities)
+        Returns the text generated in the xml format for all the definitions of the variables (entities + activities)
         """
         # numberOfVariables = 3 * numberOfEntities + numberOfPotential + numberOfMandatory
         numberOfVariables = (self.entityDefinition.rstrip().lstrip().count("\n") + 1) * 3 + (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + (self.mandatoryDefinition.rstrip().lstrip().count("\n") + 1)

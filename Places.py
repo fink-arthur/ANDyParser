@@ -2,7 +2,7 @@
 
 class Places:
     """
-    This class will generate all the text in the correct "snoopy" format to initialize
+    This class will generate all the text in the correct xml format to initialize
     all the places that will be used by the petri net
     """
 
@@ -17,6 +17,10 @@ class Places:
         self.iteratorNumberOfPlaces = iter(range(self.numberOfPlaces))
 
     def createGraphicPreferences(self, identifier, name):
+        """
+        Returns the text in xml format to initialize all the graphic preference of a place
+        (this is used both by the activity and the entity functions)
+        """
         accumulator = ""
         accumulator += "<node identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
         accumulator +="<attribute name=\"Name\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n"
@@ -40,12 +44,18 @@ class Places:
         return accumulator
     
     def creatingLambda(self, numberOfLevel):
+        """
+        Returns a string with numberOfLevel * D,
+        """
         accumulator = "0"
         for _ in range(1,numberOfLevel):
             accumulator += ",0"
         return accumulator
 
     def createMarkingPreferenceEntity(self, name, identifier, numberOfLevel):
+        """
+        Returns the text in xml format to initialize a place for an entity with the correct marking
+        """
         accumulator = ""
         accumulator += "<attribute name=\"MarkingList\" type=\"ColList\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
         accumulator += "<colList_head>\n<colList_colLabel>\n<![CDATA[Color/Predicate/Function]]>\n</colList_colLabel>\n"
@@ -64,9 +74,15 @@ class Places:
         return accumulator
 
     def makeEntityPlace(self, identifier, name, numberOfLevel):
+        """
+        Returns the text in xml format to initialize the place for the entity
+        """
         return self.createGraphicPreferences(identifier, name) + self.createMarkingPreferenceEntity(name, identifier, numberOfLevel)
 
     def createMarkingPreferenceActivity(self, identifier, name):
+        """
+        Returns the text in xml format to initialize a place for an activity with the correct marking
+        """
         accumulator = ""
         accumulator += "<attribute name=\"MarkingList\" type=\"ColList\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
         accumulator += "<colList_head>\n<colList_colLabel>\n<![CDATA[Color/Predicate/Function]]>\n</colList_colLabel>\n"
@@ -85,9 +101,15 @@ class Places:
         return accumulator
     
     def makeActivityPlace(self, identifier, name):
+        """
+        Returns the text in xml format to initialize the place for the activity
+        """
         return self.createGraphicPreferences(identifier, name) + self.createMarkingPreferenceActivity(identifier, name)
 
     def makeText(self):
+        """
+        Returns the text generated in the xml format for all the definitions of the places (entities + activities)
+        """
         startPlaces = "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<?xml-stylesheet type=\"text/xsl\" href=\"/xsl/spped2svg.xsl\"?>\n<Snoopy version=\"2\" revision=\"1.13\">\n<netclass name=\"Colored Extended Petri Net\"/>\n<nodeclasses count=\"4\">\n<nodeclass count=\"" + str(self.numberOfPlaces) + "\" name=\"Place\">\n"
         endPlaces = "</nodeclass>\n"
         accumulator = ""

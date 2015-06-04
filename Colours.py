@@ -2,7 +2,7 @@
 
 class Colours:
     """
-    This class will generate all the text in the correct "snoopy" format to create
+    This class will generate all the text in the correct xml format to create
     all the colour sets that will need to be used for the petri net (simple and compounded)
     """
 
@@ -131,7 +131,7 @@ class Colours:
     
     def makeText(self):
         """
-        Returns the text generated in the "snoopy" format for all the definitions of the colors
+        Returns the text generated in the xml format for all the definitions of the colors
         """
         # the string that contains all the unchanging data when creating the simple color sets
         startStringSimpleColor = "<metadataclass count=\"1\" name=\"Basic Colorset Class\">\n<metadata id=\"7035\" net=\"1\">\n<attribute name=\"Name\" id=\"7036\" net=\"1\">\n<![CDATA[NewColorset]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"7037\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"7038\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n"
