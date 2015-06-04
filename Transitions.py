@@ -1,5 +1,118 @@
+# coding=utf-8
+
+import re
+
 class Transitions:
     """
     This class will generate all the text in the correct "snoopy" format to initialize
     all the transitions that will be used by the petri net
     """
+    
+    def __init__(self, potentialDefinition):
+        self.potentialDefinition = potentialDefinition
+        # an iterator so that all the id used in a places are controlled and not repeated
+        self.iterator = iter(range(30000,40000))
+        # numberOfTransitions = numberOfPotential + 1 (only one transition for the mandatory activities)
+        self.numberOfTransitions = (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + 1
+        self.iteratorNumberOfTransitions = iter(range(self.numberOfTransitions))
+        
+    def activiatorStringToGuard(self, string, delta):
+        name = string.split(",")[0]
+        level = string.split(",")[1]
+        accumulator = ""
+        accumulator += "level" + name + " >= " + level + " & "
+        accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta + " & "
+        return accumulator
+    
+    def inhibitorStringToGuard(self, string, delta):
+        name = string.split(",")[0]
+        level = string.split(",")[1]
+        accumulator = ""
+        accumulator += "level" + name + " < " + level + " & "
+        accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta + " & "
+        return accumulator
+    
+    def stringToGuard(self, string, definitionNumber):
+        activatorsAndInhibitors = string.split("-")[0]
+        delta = string.split("-")[1]
+        activators = activatorsAndInhibitors.split(";")[0]
+        inhibitors = activatorsAndInhibitors.split(";")[1]
+        rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
+        accumulator = ""
+        for i in re.findall(rePattern, activators):
+            accumulator += self.activiatorStringToGuard(i, delta)
+        for i in re.findall(rePattern, inhibitors):
+            accumulator += self.inhibitorStringToGuard(i, delta)
+        return accumulator + "ptalpha" + str(definitionNumber) + ">=" + string.split("-")[1]
+    
+    def createGraphicPreferences(self, identifier):
+        accumulator = ""
+        accumulator += "<node identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator +="<attribute name=\"Name\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[]]>\n"
+        accumulator += "<graphics count=\"1\">\n"
+        accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</attribute>\n<attribute name=\"ID\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "<![CDATA[" + str(self.iteratorNumberOfTransitions.next()) + "]]>\n<graphics count=\"1\">\n"
+        accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</attribute>\n"
+        accumulator += "<attribute name=\"Logic\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "<![CDATA[]]>\n<graphics count=\"1\">\n"
+        accumulator += "<graphic yoff=\"40.00\" x=\"180.00\" y=\"240.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</attribute>\n"
+        return accumulator
+    
+    def createPotentialGuard(self, identifier, string, definitionNumber):
+        accumulator = ""
+        accumulator += "<attribute name=\"GuardList\" type=\"ColList\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
+        accumulator += "<colList_head>\n<colList_colLabel>\n<![CDATA[Guard set]]>\n</colList_colLabel>\n"
+        accumulator += "<colList_colLabel>\n<![CDATA[Guard]]>\n</colList_colLabel>\n</colList_head>\n"
+        accumulator += "<colList_body>\n<colList_row nr=\"0\">\n<colList_col nr=\"0\">\n<![CDATA[Main]]>\n</colList_col>"
+        accumulator += "<colList_col nr=\"1\">\n<![CDATA[" + self.stringToGuard(string, definitionNumber) + "]]>\n"
+        accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
+        accumulator += "<graphic xoff=\"45.00\" yoff=\"-25.00\" x=\"305.00\" y=\"175.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
+        accumulator += "<graphic x=\"260.00\" y=\"200.00\" id=\"" + str(identifier) + "\" net=\"1\" "
+        accumulator += "show=\"1\" w=\"20.00\" h=\"20.00\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</node>\n"
+        return accumulator
+    
+    def makePotentialTransition(self, potentialDef, definitionNumber):
+        identifier = self.iterator.next()
+        return self.createGraphicPreferences(identifier) + self.createPotentialGuard(identifier, potentialDef, definitionNumber)
+    
+    def createMandatoryGuard(self, identifier):
+        accumulator = ""
+        accumulator += "<attribute name=\"GuardList\" type=\"ColList\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
+        accumulator += "<colList_head>\n<colList_colLabel>\n<![CDATA[Guard set]]>\n</colList_colLabel>\n"
+        accumulator += "<colList_colLabel>\n<![CDATA[Guard]]>\n</colList_colLabel>\n</colList_head>\n"
+        accumulator += "<colList_body>\n<colList_row nr=\"0\">\n<colList_col nr=\"0\">\n<![CDATA[Main]]>\n</colList_col>"
+        accumulator += "<colList_col nr=\"1\">\n<![CDATA[]]>\n" # Setting the guard to True
+        accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
+        accumulator += "<graphic xoff=\"45.00\" yoff=\"-25.00\" x=\"305.00\" y=\"175.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
+        accumulator += "<graphic x=\"260.00\" y=\"200.00\" id=\"" + str(identifier) + "\" net=\"1\" "
+        accumulator += "show=\"1\" w=\"20.00\" h=\"20.00\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "</graphics>\n</node>\n"
+        return accumulator
+    
+    def makeMandatoryTransition(self):
+        identifier = self.iterator.next()
+        return self.createGraphicPreferences(identifier) + self.createMandatoryGuard(identifier)
+    
+    def makeText(self):
+        startTransitions = "<nodeclass count=\"" + str(self.numberOfTransitions) + "\" name=\"Transition\">\n"
+        endTransitions = "</nodeclass>\n"
+        accumulator = ""
+        splittedDefinition = self.potentialDefinition.split("\n")
+        for i in range(len(splittedDefinition)):
+            accumulator += self.makePotentialTransition(splittedDefinition[i], i)
+        accumulator += self.makeMandatoryTransition()
+        return startTransitions + accumulator + endTransitions
