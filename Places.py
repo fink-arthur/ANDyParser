@@ -24,11 +24,11 @@ class Places:
         accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<attribute name=\"ID\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
-        accumulator += "<![CDATA[" + str(self.iteratorNumberOfPlaces.next()) + "]]>\n\n<graphics count=\"1\">\n"
+        accumulator += "<![CDATA[" + str(self.iteratorNumberOfPlaces.next()) + "]]>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<attribute name=\"Marking\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
-        accumulator += "<![CDATA[1]]>\n\n<graphics count=\"1\">\n"
+        accumulator += "<![CDATA[1]]>\n<graphics count=\"1\">\n"
         accumulator += "<graphic x=\"180.00\" y=\"200.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<attribute name=\"Logic\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
@@ -73,5 +73,5 @@ class Places:
         for i in (self.entityDefinition.split("\n")):
             numberOfLevel = i.split(":")[1].count(",") + 1
             name = i.split(":")[0]
-            accumulator += self.makeEntityPlace(self.iterator.next(), name, numberOfLevel)
+            accumulator += self.makeEntityPlace(self.iterator.next(), name.rstrip().lsplit(), numberOfLevel)
         return startPlaces + accumulator + endPlaces
