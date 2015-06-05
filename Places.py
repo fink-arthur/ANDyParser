@@ -1,5 +1,7 @@
 # coding=utf-8
 
+import pickle
+
 class Places:
     """
     This class will generate all the text in the correct xml format to initialize
@@ -15,14 +17,17 @@ class Places:
         # numberOfPLaces = numberOfEntities + numberOfPotential + numberOfMandatory
         self.numberOfPlaces = (self.entityDefinition.rstrip().lstrip().count("\n") + 1) + (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + (self.mandatoryDefinition.rstrip().lstrip().count("\n") + 1)
         self.iteratorNumberOfPlaces = iter(range(self.numberOfPlaces))
+        self.placesDictionnary = dict()
 
     def createGraphicPreferences(self, identifier, name):
         """
         Returns the text in xml format to initialize all the graphic preference of a place
         (this is used both by the activity and the entity functions)
         """
+        nodeID = self.iterator.next()
+        self.placesDictionnary.setdefault(name, nodeID)
         accumulator = ""
-        accumulator += "<node identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "<node identifier=\"" + str(nodeID) + "\" net=\"1\">\n"
         accumulator +="<attribute name=\"Name\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n" # Setting the name of the place
         accumulator += "<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
@@ -126,4 +131,6 @@ class Places:
         for i in range(len(self.mandatoryDefinition.split("\n"))):
             # A loop to create all the places for each mandatory activity
             accumulator += self.makeActivityPlace(self.iterator.next(), "pbeta" + str(i))
+        with open("places.c", 'w') as f:
+            pickle.dump(self.placesDictionnary, f)
         return startPlaces + accumulator + endPlaces

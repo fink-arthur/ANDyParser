@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import Colours, Variables, Places, Transitions
+import Colours, Variables, Places, Transitions, Edges
 
 class Parser:
     """
@@ -8,7 +8,7 @@ class Parser:
     from the definitions given in the file at the address given as an argument for this file
     """
     
-    def __init__(self, address):
+    def __init__(self, address):        
         with open(address, 'r') as f:
             self.string = f.read().split("%%")
         self.entities = self.string[0].rstrip().lstrip()
@@ -19,6 +19,7 @@ class Parser:
         self.variables = Variables.Variables(self.entities, self.potential, self.mandatory).makeText()
         self.places = Places.Places(self.entities, self.potential, self.mandatory).makeText()
         self.transitions = Transitions.Transitions(self.potential).makeText()
+        self.edges = Edges.Edges(self.potential, self.mandatory).makeText()
             
     def makeFile(self):
         with open("start.txt", 'r') as f:
@@ -26,7 +27,7 @@ class Parser:
         with open("end.txt", 'r') as f:
             end = f.read()
         with open("test.colextpn", 'w') as f:
-            f.write(self.places + self.transitions + start + "\n" + self.colours + self.variables + end)
+            f.write(self.places + self.transitions + self.edges + start + "\n" + self.colours + self.variables + end)
         return 1
         
 if __name__ == '__main__':

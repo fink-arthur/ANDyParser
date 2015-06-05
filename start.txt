@@ -1,8 +1,3 @@
-    <nodeclass count="0" name="Coarse Place"/>
-    <nodeclass count="0" name="Coarse Transition"/>
-  </nodeclasses>
-  <edgeclasses count="5">
-    <edgeclass count="0" name="Edge"/>
     <edgeclass count="0" name="Read Edge"/>
     <edgeclass count="0" name="Inhibitor Edge"/>
     <edgeclass count="0" name="Reset Edge"/>
