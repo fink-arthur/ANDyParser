@@ -26,9 +26,9 @@ class Variables:
             entityName = splittedLine[0].rstrip().lstrip()
             accumulator += "<colList_row nr=\"" + str(i) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
-            accumulator += "<![CDATA[" + "level" + entityName + "]]>\n"
+            accumulator += "<![CDATA[" + "level" + entityName + "]]>\n" # We give a name to the variable
             accumulator += "</colList_col>\n<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "l" + entityName +  "]]>\n"
+            accumulator += "<![CDATA[" + "l" + entityName +  "]]>\n" # We link the variable with a colors set previously defined
             accumulator += "</colList_col>\n<colList_col nr=\"2\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
         for i in range(numberOfEntityLines):
@@ -37,9 +37,9 @@ class Variables:
             entityName = splittedLine[0].rstrip().lstrip()
             accumulator += "<colList_row nr=\"" + str(i + numberOfEntityLines) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
-            accumulator += "<![CDATA[" + "timer" + entityName + "]]>\n"
+            accumulator += "<![CDATA[" + "timer" + entityName + "]]>\n" # We give a name to the variable
             accumulator += "</colList_col>\n<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "u" + entityName +  "]]>\n"
+            accumulator += "<![CDATA[" + "u" + entityName +  "]]>\n" # We link the variable with a colors set previously defined
             accumulator += "</colList_col>\n<colList_col nr=\"2\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
             
         startIndex = 2 * numberOfEntityLines
@@ -49,9 +49,9 @@ class Variables:
             entityName = splittedLine[0].rstrip().lstrip()
             accumulator += "<colList_row nr=\"" + str(i + startIndex) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
-            accumulator += "<![CDATA[" + "lbd" + entityName + "]]>\n"
+            accumulator += "<![CDATA[" + "lbd" + entityName + "]]>\n" # We give a name to the variable
             accumulator += "</colList_col>\n<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "lambda" + entityName +  "]]>\n"
+            accumulator += "<![CDATA[" + "lambda" + entityName +  "]]>\n" # We link the variable with a colors set previously defined
             accumulator += "</colList_col>\n<colList_col nr=\"2\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
         return startString + accumulator
@@ -68,9 +68,9 @@ class Variables:
             # A loop to create all the variables that will store when an update was done on a potential activity
             accumulator += "<colList_row nr=\"" + str(i + numberOfEntities) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
-            accumulator += "<![CDATA[" + "ptalpha" + str(i) + "]]>\n"
+            accumulator += "<![CDATA[" + "ptalpha" + str(i) + "]]>\n" # We give a name to the variable
             accumulator += "</colList_col>\n<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "D" + "]]>\n"
+            accumulator += "<![CDATA[" + "D" + "]]>\n" # We link the variable with a colors set previously defined
             accumulator += "</colList_col>\n<colList_col nr=\"2\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
             
         startIndex = numberOfEntities + numberOfPotentialLines
@@ -78,11 +78,12 @@ class Variables:
             # A loop to create all the variables that will store when an update was done on a mandatory activity
             accumulator += "<colList_row nr=\"" + str(i + startIndex) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
-            accumulator += "<![CDATA[" + "ptbeta" + str(i) + "]]>\n"
+            accumulator += "<![CDATA[" + "ptbeta" + str(i) + "]]>\n" # We give a name to the variable
             accumulator += "</colList_col>\n<colList_col nr=\"1\">\n"
-            accumulator += "<![CDATA[" + "D" + "]]>\n"
+            accumulator += "<![CDATA[" + "D" + "]]>\n" # We link the variable with a colors set previously defined
             accumulator += "</colList_col>\n<colList_col nr=\"2\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
+        # endString is used to close all the still open xml tag
         endString =  "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n"
         return accumulator + endString
     

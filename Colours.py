@@ -57,7 +57,7 @@ class Colours:
             accumulator += "<colList_row nr=\"" + str(i) + "\">\n"
             accumulator += "<colList_col nr=\"1\">\n"
             accumulator += "<![CDATA[" + "l" + splittedLine[0].rstrip().lstrip() + "]]>\n" # we take the name of the entity
-            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
+            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n" # the colour uses a set of the integer type
             accumulator += "<![CDATA[0-" + str(len(splittedLine[1].split(",")) - 1) + "]]>\n" # we count how many levels there are
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
@@ -66,18 +66,19 @@ class Colours:
             accumulator += "<colList_row nr=\"" + str(i + numberOfEntityLines) + "\">\n"
             accumulator += "<colList_col nr=\"1\">\n"
             accumulator += "<![CDATA[" + "u" + lines[i].split(":")[0].rstrip().lstrip() + "]]>\n" # we take the name of the entity
-            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
-            accumulator += "<![CDATA[0-" + str(self.figuringdOut(lines[i])) + "]]>\n"
+            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"# the colour uses a set of the integer type
+            accumulator += "<![CDATA[0-" + str(self.figuringdOut(lines[i])) + "]]>\n" # this color set has a d + 1 size
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
         # We need a color of size D so that we can create the lambdas for all the entities and the timers for the activities both mandatory and potential
         accumulator += "<colList_row nr=\"" + str(numberOfColours - 1) + "\">\n"
         accumulator += "<colList_col nr=\"1\">\n"
         accumulator += "<![CDATA[D]]>\n"
-        accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
-        accumulator += "<![CDATA[0-" + str(self.figuringDOut()) + "]]>\n"
+        accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[int]]>\n</colList_col>\n<colList_col nr=\"2\">\n" # the colour uses a set of the integer type
+        accumulator += "<![CDATA[0-" + str(self.figuringDOut()) + "]]>\n" # the colour set has a size of D + 1
         accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
+        # endString is used to close all the still open xml tag
         endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n"
         return startString + accumulator + endString
     
@@ -112,8 +113,8 @@ class Colours:
             accumulator += "<colList_row nr=\"" + str(i) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
             accumulator += "<![CDATA[" + "lambda" + splittedLine[0].rstrip().lstrip() + "]]>\n" # we take the name of the entity
-            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[product]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
-            accumulator += "<![CDATA[" + self.creatingLambda(splittedLine[1].count(",") + 1) + "]]>"
+            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[product]]>\n</colList_col>\n<colList_col nr=\"2\">\n" # the colour uses a set of the product type
+            accumulator += "<![CDATA[" + self.creatingLambda(splittedLine[1].count(",") + 1) + "]]>" # Defines the product color with as much D as needed
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"5\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
         for i in range(numberOfEntityLines):
@@ -122,10 +123,11 @@ class Colours:
             accumulator += "<colList_row nr=\"" + str(i + numberOfEntityLines) + "\">\n"
             accumulator += "<colList_col nr=\"0\">\n"
             accumulator += "<![CDATA[" + splittedLine[0].rstrip().lstrip() + "]]>\n" # we take the name of the entity
-            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[product]]>\n</colList_col>\n<colList_col nr=\"2\">\n"
-            accumulator += "<![CDATA[" + self.creatingEntityCompound(splittedLine[0].rstrip().lstrip()) + "]]>"
+            accumulator += "</colList_col>\n<colList_col nr=\"1\">\n<![CDATA[product]]>\n</colList_col>\n<colList_col nr=\"2\">\n" # the colour uses a set of the product type
+            accumulator += "<![CDATA[" + self.creatingEntityCompound(splittedLine[0].rstrip().lstrip()) + "]]>" # Defines the product color with all the simple color set created previously for this specific entity
             accumulator += "</colList_col>\n<colList_col nr=\"3\">\n<![CDATA[]]>\n</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[white]]>\n</colList_col>\n<colList_col nr=\"5\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         
+        # endString is used to close all the still open xml tag
         endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n"
         return startString + accumulator + endString
     
