@@ -9,16 +9,15 @@ class Edges:
     all the edges that will be used by the petri net
     """
     
-    def __init__(self, potentialDefinition, mandatoryDefinition):
-        self.iterator = iter(range(22000,23000))
+    def __init__(self, entityDefinition, potentialDefinition, mandatoryDefinition):
+        self.iterator = iter(range(40000,50000))
         with open("places.c", 'r') as f:
             self.placesDictionnary = pickle.load(f)
         with open("transitions.c", 'r') as f:
             self.transitionsDictionnary = pickle.load(f)
+        self.entityDefinition = entityDefinition
         self.potentialDefinition = potentialDefinition
         self.mandatoryDefinition = mandatoryDefinition
-        print(self.transitionsDictionnary)
-        print(self.placesDictionnary)
         
     def bothSides(self):
         dictionnary = dict()
@@ -32,25 +31,11 @@ class Edges:
             inhibitors = activatorsAndInhibitors.split(";")[1]
             for j in re.findall(rePattern, activators):
                 name = j.split(",")[0].rstrip().lstrip()
-                potentialActivityDictionnary.setdefault(name, products.count(name) > 0)
+                potentialActivityDictionnary.setdefault(name, products.count("(" + name + ",") > 0)
             for j in re.findall(rePattern, inhibitors):
                 name = j.split(",")[0].rstrip().lstrip()
-                potentialActivityDictionnary.setdefault(name, products.count(name) > 0)
+                potentialActivityDictionnary.setdefault(name, products.count("(" + name + ",") > 0)
             dictionnary.setdefault("alpha" + (str(i)), potentialActivityDictionnary)
-        splittedMandatory = self.mandatoryDefinition.split("\n")
-        for i in range(len(splittedMandatory)):
-            mandatoryActivityDictionnary = dict()
-            activatorsAndInhibitors = splittedMandatory[i].split("-")[0]
-            products = splittedMandatory[i].split("->")[1]
-            activators = activatorsAndInhibitors.split(";")[0]
-            inhibitors = activatorsAndInhibitors.split(";")[1]
-            for j in re.findall(rePattern, activators):
-                name = j.split(",")[0].rstrip().lstrip()
-                mandatoryActivityDictionnary.setdefault(name, products.count(name) > 0)
-            for j in re.findall(rePattern, inhibitors):
-                name = j.split(",")[0].rstrip().lstrip()
-                mandatoryActivityDictionnary.setdefault(name, products.count(name) > 0)
-            dictionnary.setdefault("beta" + str(i), mandatoryActivityDictionnary)
         return dictionnary
     
     def countReadEdges(self, dictionnary):
@@ -60,6 +45,9 @@ class Edges:
                 if (not(dictionnary[i][j])):
                     accumulator += 1
         return accumulator
+    
+    def countEdges(self):
+        return 4 * len(self.potentialDefinition.split("\n")) + 2 * len(self.mandatoryDefinition.split("\n")) + 2 * len(self.entityDefinition.split("\n"))
     
     def creatingEntityCompound(self, entityName):
         """
@@ -125,15 +113,60 @@ class Edges:
         
     def makeText(self):
         dictionnary = self.bothSides()
-        print(dictionnary)
-        startEdges = "<nodeclass count=\"0\" name=\"Coarse Place\"/>\n<nodeclass count=\"0\" name=\"Coarse Transition\"/>\n</nodeclasses>\n<edgeclasses count=\"5\">\n<edgeclass count=\"" + str(0) + "\" name=\"Edge\">\n"
+        startEdges = "<nodeclass count=\"0\" name=\"Coarse Place\"/>\n<nodeclass count=\"0\" name=\"Coarse Transition\"/>\n</nodeclasses>\n<edgeclasses count=\"5\">\n<edgeclass count=\"" + str(self.countEdges()) + "\" name=\"Edge\">\n"
         endEdge = "</edgeclass>\n"
         startReadEdge = "<edgeclass count=\"" + str(self.countReadEdges(dictionnary)) + "\" name=\"Read Edge\">\n"
         endReadEdge = "</edgeclass>\n"
         edgeAccumulator = ""
         readEdgeAccumulator = ""
+        
         for i in dictionnary.keys():
             for j in dictionnary[i].keys():
                 if (not(dictionnary[i][j])):
-                    readEdgeAccumulator += self.makeReadEdge(self.placesDictionnary[j], self.transitionsDictionnary["t" + (i if (i.count("beta") == 0) else "beta")], self.creatingEntityCompound(j), "")
+                    readEdgeAccumulator += self.makeReadEdge(self.placesDictionnary[j], self.transitionsDictionnary["t" + i], self.creatingEntityCompound(j), "")
+        
+        loop = 0
+        while (loop >= 0):
+            try:
+                placeID = self.placesDictionnary["palpha" + str(loop)]
+                transitionID = self.transitionsDictionnary["talpha" + str(loop)]
+                betaTransitionID = self.transitionsDictionnary["tbeta"]
+                edgeAccumulator += self.makeEdge(placeID, transitionID, "ptalpha" + str(loop), "")
+                edgeAccumulator += self.makeEdge(transitionID, placeID, "ptalpha" + str(loop), "")
+                edgeAccumulator += self.makeEdge(placeID, betaTransitionID, "ptalpha" + str(loop), "")
+                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, "ptalpha" + str(loop), "")
+                loop += 1
+            except KeyError:
+                loop = -1
+        
+        loop = 0
+        while (loop >= 0):
+            try:
+                placeID = self.placesDictionnary["pbeta" + str(loop)]
+                transitionID = self.transitionsDictionnary["tbeta"]
+                edgeAccumulator += self.makeEdge(placeID, transitionID, "ptbeta" + str(loop), "")
+                edgeAccumulator += self.makeEdge(transitionID, placeID, "ptbeta" + str(loop), "")
+                loop += 1
+            except KeyError:
+                loop = -1
+        
+        for i in (self.entityDefinition.split("\n")):
+            # A loop to create all the places for each entity
+            name = i.split(":")[0].rstrip().lstrip()
+            placeID = self.placesDictionnary[name]
+            transitionID = self.transitionsDictionnary["tbeta"]
+            edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
+            edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityCompound(name), "")
+        
+        rePattern = re.compile("[a-zA-Z0-9]+,[+\-][0-9]+")
+        splittedPotential = self.potentialDefinition.split("\n")
+        for i in range(len(splittedPotential)):
+            products = splittedPotential[i].split("->")[1]
+            for j in re.findall(rePattern, products):
+                name = j.split(",")[0]
+                placeID = self.placesDictionnary[name]
+                transitionID = self.transitionsDictionnary["talpha" + str(i)]
+                edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
+                edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityCompound(name), "")
+        
         return startEdges + edgeAccumulator + endEdge + startReadEdge + readEdgeAccumulator + endReadEdge

@@ -19,7 +19,7 @@ class Parser:
         self.variables = Variables.Variables(self.entities, self.potential, self.mandatory).makeText()
         self.places = Places.Places(self.entities, self.potential, self.mandatory).makeText()
         self.transitions = Transitions.Transitions(self.potential).makeText()
-        self.edges = Edges.Edges(self.potential, self.mandatory).makeText()
+        self.edges = Edges.Edges(self.entities, self.potential, self.mandatory).makeText()
             
     def makeFile(self):
         with open("start.txt", 'r') as f:

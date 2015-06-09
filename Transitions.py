@@ -12,7 +12,7 @@ class Transitions:
     def __init__(self, potentialDefinition):
         self.potentialDefinition = potentialDefinition
         # an iterator so that all the id used in a places are controlled and not repeated
-        self.iterator = iter(range(21000,22000))
+        self.iterator = iter(range(30000,40000))
         # numberOfTransitions = numberOfPotential + 1 (only one transition for the mandatory activities)
         self.numberOfTransitions = (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + 1
         self.iteratorNumberOfTransitions = iter(range(self.numberOfTransitions))
