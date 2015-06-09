@@ -12,7 +12,7 @@ class Transitions:
     def __init__(self, potentialDefinition):
         self.potentialDefinition = potentialDefinition
         # an iterator so that all the id used in a places are controlled and not repeated
-        self.iterator = iter(range(30000,40000))
+        self.iterator = iter(range(21000,22000))
         # numberOfTransitions = numberOfPotential + 1 (only one transition for the mandatory activities)
         self.numberOfTransitions = (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + 1
         self.iteratorNumberOfTransitions = iter(range(self.numberOfTransitions))
@@ -68,20 +68,20 @@ class Transitions:
         nodeID = self.iterator.next()
         self.transitionsDictionnary.setdefault(name, nodeID)
         accumulator = ""
-        accumulator += "<node identifier=\"" + str(nodeID) + "\" net=\"1\">\n"
-        accumulator +="<attribute name=\"Name\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n" # Setting the name of the transition
+        accumulator += "<node id=\"" + str(nodeID) + "\" net=\"1\">\n"
+        accumulator +="<attribute name=\"Name\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n" # Setting the name of the transition
         accumulator += "<graphics count=\"1\">\n"
-        accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"275.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"275.00\" y=\"220.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphic preferences for the name
-        accumulator += "</graphics>\n</attribute>\n<attribute name=\"ID\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
+        accumulator += "</graphics>\n</attribute>\n<attribute name=\"ID\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
         accumulator += "<![CDATA[" + str(self.iteratorNumberOfTransitions.next()) + "]]>\n<graphics count=\"1\">\n" # Setting the id of the transition
-        accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "<graphic xoff=\"25.00\" yoff=\"20.00\" x=\"205.00\" y=\"220.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphic preferences for the id
         accumulator += "</graphics>\n</attribute>\n"
-        accumulator += "<attribute name=\"Logic\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n" # Setting the logic identifier (not used)
-        accumulator += "<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\">\n" # Setting the comment of the transition
+        accumulator += "<attribute name=\"Logic\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n" # Setting the logic identifier (not used)
+        accumulator += "<![CDATA[0]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"Comment\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n" # Setting the comment of the transition
         accumulator += "<![CDATA[]]>\n<graphics count=\"1\">\n"
-        accumulator += "<graphic yoff=\"40.00\" x=\"180.00\" y=\"240.00\" identifier=\"" + str(self.iterator.next()) + "\" net=\"1\" "
+        accumulator += "<graphic yoff=\"40.00\" x=\"180.00\" y=\"240.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
         accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphic preferences for the comment
         accumulator += "</graphics>\n</attribute>\n"
         return accumulator

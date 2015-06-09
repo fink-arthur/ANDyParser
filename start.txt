@@ -1,4 +1,3 @@
-    <edgeclass count="0" name="Read Edge"/>
     <edgeclass count="0" name="Inhibitor Edge"/>
     <edgeclass count="0" name="Reset Edge"/>
     <edgeclass count="0" name="Equal Edge"/>
