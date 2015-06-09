@@ -1,0 +1,20 @@
+Sugar : [0,2]
+Aspartame : [0,2]
+Glycemia : [0,8,8,8]
+Glucagon : [0,3]
+Insulin : [0,3,3]
+
+%%
+
+((Sugar,1));() -1-> ((Insulin,+1),(Glycemia,+1))
+((Aspartame,1));() -1-> ((Insulin,+1))
+();((Glycemia,1) -1-> ((Glucagon,+1))
+((Glycemia,3));() -1-> ((Insulin,+1))
+((Insuline,2);() -1-> ((Glycemia,-1))
+((Insulin,1),(Glycemia,3));() -1-> ((Glycemia,-1))
+((Insulin,1));((Glycemia,2)) -1-> ((Glycemia,-1)
+((Glucagon,1));() -1-> ((Glycemia,+1))
+
+%%
+
+%%

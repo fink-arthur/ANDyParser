@@ -20,6 +20,10 @@ class Edges:
         self.mandatoryDefinition = mandatoryDefinition
         
     def bothSides(self):
+        """
+        Returns a dictionnary containing for all the potential definition if an entity is both 
+        either an activitor or an inhibitor and a product
+        """
         dictionnary = dict()
         splittedPotential = self.potentialDefinition.split("\n")
         rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
@@ -39,6 +43,9 @@ class Edges:
         return dictionnary
     
     def countReadEdges(self, dictionnary):
+        """
+        Returns the number of read edges in the graph by using the dictionnary from the bothSides function
+        """
         accumulator = 0
         for i in dictionnary.keys():
             for j in dictionnary[i].keys():
@@ -47,6 +54,9 @@ class Edges:
         return accumulator
     
     def countEdges(self):
+        """
+        Returns the number of edges contained in the petri net
+        """
         return 4 * len(self.potentialDefinition.split("\n")) + 2 * len(self.mandatoryDefinition.split("\n")) + 2 * len(self.entityDefinition.split("\n"))
     
     def creatingEntityCompound(self, entityName):
@@ -56,6 +66,9 @@ class Edges:
         return "(level" + entityName + ",timer" + entityName + ",lbd" + entityName + ")"
     
     def makeEdge(self, source, target, expression, name):
+        """
+        Returns a text in the xml format to initialize an edge from source to target with the expression
+        """
         identifier = self.iterator.next()
         accumulator = ""
         accumulator += "<edge source=\""+ str(source) + "\" target=\"" + str(target) + "\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
@@ -84,6 +97,9 @@ class Edges:
         return accumulator
     
     def makeReadEdge(self, source, target, expression, name):
+        """
+        Returns a text in the xml format to initialize a read edge from source to target with the expression
+        """
         identifier = self.iterator.next()
         accumulator = ""
         accumulator += "<edge source=\""+ str(source) + "\" target=\"" + str(target) + "\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n"
@@ -112,6 +128,9 @@ class Edges:
         return accumulator
         
     def makeText(self):
+        """
+        Returns the text generated in the xml format for all the definitions of the edges
+        """
         dictionnary = self.bothSides()
         startEdges = "<nodeclass count=\"0\" name=\"Coarse Place\"/>\n<nodeclass count=\"0\" name=\"Coarse Transition\"/>\n</nodeclasses>\n<edgeclasses count=\"5\">\n<edgeclass count=\"" + str(self.countEdges()) + "\" name=\"Edge\">\n"
         endEdge = "</edgeclass>\n"
@@ -120,11 +139,14 @@ class Edges:
         edgeAccumulator = ""
         readEdgeAccumulator = ""
         
+        # A loop to create all the read edges from the dictionnary of the function bothSides
         for i in dictionnary.keys():
             for j in dictionnary[i].keys():
                 if (not(dictionnary[i][j])):
                     readEdgeAccumulator += self.makeReadEdge(self.placesDictionnary[j], self.transitionsDictionnary["t" + i], self.creatingEntityCompound(j), "")
         
+        # A loop to create all the edges going to and from the potential activities places to their transitions
+        # but also to and from the potential activities places to the mandatory transition
         loop = 0
         while (loop >= 0):
             try:
@@ -132,13 +154,14 @@ class Edges:
                 transitionID = self.transitionsDictionnary["talpha" + str(loop)]
                 betaTransitionID = self.transitionsDictionnary["tbeta"]
                 edgeAccumulator += self.makeEdge(placeID, transitionID, "ptalpha" + str(loop), "")
-                edgeAccumulator += self.makeEdge(transitionID, placeID, "ptalpha" + str(loop), "")
+                edgeAccumulator += self.makeEdge(transitionID, placeID, "0", "")
                 edgeAccumulator += self.makeEdge(placeID, betaTransitionID, "ptalpha" + str(loop), "")
-                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, "ptalpha" + str(loop), "")
+                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, "ptalpha" + str(loop) + " + 1", "")
                 loop += 1
             except KeyError:
                 loop = -1
         
+        # A loop to create all the edges going to and from the mandatory activities places to the mandatory activity transition
         loop = 0
         while (loop >= 0):
             try:
@@ -150,14 +173,15 @@ class Edges:
             except KeyError:
                 loop = -1
         
+        # A loop to create all the edges going to and from the entities places to the mandatory transition
         for i in (self.entityDefinition.split("\n")):
-            # A loop to create all the places for each entity
             name = i.split(":")[0].rstrip().lstrip()
             placeID = self.placesDictionnary[name]
             transitionID = self.transitionsDictionnary["tbeta"]
             edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
             edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityCompound(name), "")
         
+        # A loop to create all the edges going to and from the entities places to their transition (using the potential definition)
         rePattern = re.compile("[a-zA-Z0-9]+,[+\-][0-9]+")
         splittedPotential = self.potentialDefinition.split("\n")
         for i in range(len(splittedPotential)):
