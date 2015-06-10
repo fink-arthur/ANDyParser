@@ -1,6 +1,6 @@
 # coding=utf-8
 
-import Colours, Variables, Places, Transitions, Edges
+import Colours, Variables, Places, Transitions, Edges, Functions
 
 class Parser:
     """
@@ -20,14 +20,13 @@ class Parser:
         self.places = Places.Places(self.entities, self.potential, self.mandatory).makeText()
         self.transitions = Transitions.Transitions(self.potential).makeText()
         self.edges = Edges.Edges(self.entities, self.potential, self.mandatory).makeText()
+        self.functions = Functions.Functions(self.entities).makeText()
             
     def makeFile(self):
         with open("start.txt", 'r') as f:
             start = f.read()
-        with open("end.txt", 'r') as f:
-            end = f.read()
         with open("test.colextpn", 'w') as f:
-            f.write(self.places + self.transitions + self.edges + start + "\n" + self.colours + self.variables + end)
+            f.write(self.places + self.transitions + self.edges + start + "\n" + self.colours + self.variables + self.functions)
         return 1
         
 if __name__ == '__main__':
