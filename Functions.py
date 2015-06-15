@@ -4,8 +4,10 @@ class Functions:
     all the functions that will be used by the petri net
     """
     
-    def __init__(self, entityDefinition):
+    def __init__(self, entityDefinition, potentialDefinition, mandatoryDefinition):
         self.entityDefinition = entityDefinition
+        self.potentialDefinition = potentialDefinition
+        self.mandatoryDefinition = mandatoryDefinition
         
     def makeFunction(self, rowNumber, returnType, name, attributes, functionDefinition):
         accumulator = ""
@@ -16,7 +18,7 @@ class Functions:
         accumulator += "</colList_col>\n<colList_col nr=\"4\">\n<![CDATA[]]>\n</colList_col>\n<colList_col nr=\"5\">\n<![CDATA[]]>\n</colList_col>\n</colList_row>\n"
         return accumulator
     
-    def makeDecayFunctionDefinition(self, entityDefintion):
+    def makeDecayLevelFunctionDefinition(self, entityDefintion):
         accumulator = ""
         splittedDefinition = entityDefintion.split(":")
         splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
@@ -24,7 +26,41 @@ class Functions:
         for i in range(1,len(splittedLevel)):
             accumulator += "++[l=" + str(i) + "]([u>=" + str(splittedLevel[i]) + "]" + str(i-1) + "++[u<" + str(splittedLevel[i]) + "]" + str(i) + ")"
         return accumulator
-        
+    
+    def makeDecayTimerFunctionDefinition(self, entityDefintion):
+        accumulator = ""
+        splittedDefinition = entityDefintion.split(":")
+        splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
+        accumulator += "[l=0]u+1"
+        for i in range(1,len(splittedLevel)):
+            accumulator += "++[l=" + str(i) + "]([u>=" + str(splittedLevel[i]) + "]u+1++[u<" + str(splittedLevel[i]) + "]0)"
+        return accumulator
+    
+    def figuringDOut(self):
+        """
+        Returns D for all the activities where D is the highest duration for an activity
+        """
+        splittedPotential = self.potentialDefinition.split("\n")
+        maximumPotential = 0
+        if not((len(splittedPotential) == 1) & (splittedPotential[0].rstrip().lstrip() == "")):
+            for i in splittedPotential:
+                duration = int(i.split("-")[1])
+                if (duration > maximumPotential):
+                    maximumPotential = duration
+        splittedMandatory = self.mandatoryDefinition.split("\n")
+        maximumMandatory = 0
+        if not((len(splittedMandatory) == 1) & (splittedMandatory[0].rstrip().lstrip() == "")):
+            for i in splittedMandatory:
+                duration = int(i.split("-")[1])
+                if (duration > maximumPotential):
+                    maximumMandatory = duration
+        if (maximumMandatory > maximumPotential):
+            return maximumMandatory
+        else:
+            return maximumPotential
+    
+    def makeMaxFunctionDefintion(self, D):
+        return "[level>=" + str(D) + "]" + str(D) + "++[level<" + str(D) + "]level"
     
     def makeText(self):
         startString = "<metadataclass count=\"1\" name=\"Function Class\">\n<metadata id=\"10156\" net=\"1\">\n<attribute name=\"Name\" id=\"10157\" net=\"1\">\n<![CDATA[NewFunction]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"ID\" id=\"10158\" net=\"1\">\n<![CDATA[0]]>\n<graphics count=\"0\"/>\n"
@@ -32,10 +68,17 @@ class Functions:
         startString += "<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n</colList_head>\n<colList_body>"
         endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n</metadataclasses>\n</Snoopy>"
         accumulator = ""
+        numberOfEntity = self.entityDefinition.count("\n") + 1
         
-        splittedEntityDefinition = self.entityDefinition.split("\n")
-        for i in range(len(splittedEntityDefinition)):
-            name = splittedEntityDefinition[i].split(":")[0].rstrip().lstrip()
-            accumulator += self.makeFunction(i, "l" + name, "decay" + name, "l" + name + " l, u" + name + " u", self.makeDecayFunctionDefinition(splittedEntityDefinition[i]))
+        #splittedEntityDefinition = self.entityDefinition.split("\n")
+        #for i in range(len(splittedEntityDefinition)):
+        #    name = splittedEntityDefinition[i].split(":")[0].rstrip().lstrip()
+        #    accumulator += self.makeFunction(i, "l" + name, "decayl" + name, "l" + name + " l, u" + name + " u", self.makeDecayLevelFunctionDefinition(splittedEntityDefinition[i]))
+        
+        #for i in range(len(splittedEntityDefinition)):
+        #    name = splittedEntityDefinition[i].split(":")[0].rstrip().lstrip()
+        #    accumulator += self.makeFunction(i + numberOfEntity, "u" + name, "decayu" + name, "l" + name + " l, u" + name + " u", self.makeDecayTimerFunctionDefinition(splittedEntityDefinition[i]))
+        
+        accumulator += self.makeFunction(1, "int", "maxD", "int level", self.makeMaxFunctionDefintion(self.figuringDOut()))
         
         return startString + accumulator + endString

@@ -27,19 +27,20 @@ class Edges:
         dictionnary = dict()
         splittedPotential = self.potentialDefinition.split("\n")
         rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
-        for i in range(len(splittedPotential)):
-            potentialActivityDictionnary = dict()
-            activatorsAndInhibitors = splittedPotential[i].split("-")[0]
-            products = splittedPotential[i].split("->")[1]
-            activators = activatorsAndInhibitors.split(";")[0]
-            inhibitors = activatorsAndInhibitors.split(";")[1]
-            for j in re.findall(rePattern, activators):
-                name = j.split(",")[0].rstrip().lstrip()
-                potentialActivityDictionnary.setdefault(name, products.count("(" + name + ",") > 0)
-            for j in re.findall(rePattern, inhibitors):
-                name = j.split(",")[0].rstrip().lstrip()
-                potentialActivityDictionnary.setdefault(name, products.count("(" + name + ",") > 0)
-            dictionnary.setdefault("alpha" + (str(i)), potentialActivityDictionnary)
+        if not((len(splittedPotential) == 1) & (splittedPotential[0].rstrip().lstrip() == "")):
+            for i in range(len(splittedPotential)):
+                potentialActivityDictionnary = dict()
+                activatorsAndInhibitors = splittedPotential[i].split("-")[0]
+                products = splittedPotential[i].split("->")[1]
+                activators = activatorsAndInhibitors.split(";")[0]
+                inhibitors = activatorsAndInhibitors.split(";")[1]
+                for j in re.findall(rePattern, activators):
+                    name = j.split(",")[0].rstrip().lstrip()
+                    potentialActivityDictionnary.setdefault(name, products.count("(" + name + ",") > 0)
+                for j in re.findall(rePattern, inhibitors):
+                    name = j.split(",")[0].rstrip().lstrip()
+                    potentialActivityDictionnary.setdefault(name, products.count("(" + name + ",") > 0)
+                dictionnary.setdefault("alpha" + (str(i)), potentialActivityDictionnary)
         return dictionnary
     
     def countReadEdges(self, dictionnary):
@@ -65,6 +66,72 @@ class Edges:
         """
         return "(level" + entityName + ",timer" + entityName + ",lbd" + entityName + ")"
     
+    def numberOfLevel(self, entityName):
+        splittedDefinition = self.entityDefinition.split("\n")
+        for i in splittedDefinition:
+            if (entityName in i):
+                return i.count(",") + 1
+            
+    def figuringdOut(self, line):
+        """
+        Returns d for an entity where d is the highest decay duration for a level
+        """
+        levels = line.split(":")[1].lstrip().rstrip()[1:-1].split(",")
+        accumulator = int(levels[0].lstrip().rstrip())
+        for i in range(1, len(levels)):
+            if (accumulator < int(levels[i])):
+                accumulator = int(levels[i].lstrip().rstrip())
+        return accumulator
+    
+    def figuringDOut(self):
+        """
+        Returns D for all the activities where D is the highest duration for an activity
+        """
+        splittedPotential = self.potentialDefinition.split("\n")
+        maximumPotential = 0
+        if not((len(splittedPotential) == 1) & (splittedPotential[0].rstrip().lstrip() == "")):
+            for i in splittedPotential:
+                duration = int(i.split("-")[1])
+                if (duration > maximumPotential):
+                    maximumPotential = duration
+        splittedMandatory = self.mandatoryDefinition.split("\n")
+        maximumMandatory = 0
+        if not((len(splittedMandatory) == 1) & (splittedMandatory[0].rstrip().lstrip() == "")):
+            for i in splittedMandatory:
+                duration = int(i.split("-")[1])
+                if (duration > maximumPotential):
+                    maximumMandatory = duration
+        if (maximumMandatory > maximumPotential):
+            return maximumMandatory
+        else:
+            return maximumPotential
+    
+    def makingMin(self, a, b):
+        return "((" + a  + ")+(" + b + "))/2-(abs((" + a + ")-(" + b + "))/2)" 
+    
+    def creatingEntityDecayCompound(self, entityName):
+        D = self.figuringDOut()
+        numberOfLevel = self.numberOfLevel(entityName)
+        lambdaAccumulator = "(" + self.makingMin(str(D), "(lbd" + entityName + ":1)+1")
+        for i in range(1,numberOfLevel):
+            lambdaAccumulator += "," + self.makingMin(str(D), "(lbd" + entityName + ":" + str(i + 1) +")+1")
+        lambdaAccumulator += ")"
+        
+        accumulator = ""
+        splittedDefinition = self.entityDefinition.split("\n")
+        for i in splittedDefinition:
+            if (entityName in i):
+                entityDefinition = i
+        d = self.figuringdOut(entityDefinition)
+        splittedDefinition = entityDefinition.split(":")
+        splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
+        accumulator += "[level" + entityName + "=0](0," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + lambdaAccumulator + ")"
+        for i in range(1,len(splittedLevel)):
+            accumulator += "++[level" + entityName + "=" + str(i) + "& timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + lambdaAccumulator + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + "& timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + lambdaAccumulator + ")"
+        
+        return accumulator
+    
     def makeEdge(self, source, target, expression, name):
         """
         Returns a text in the xml format to initialize an edge from source to target with the expression
@@ -88,7 +155,7 @@ class Edges:
         accumulator += "<![CDATA[" + expression + "]]>\n"
         accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" x=\"245.00\" y=\"200.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
-        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
         accumulator += "<graphic id=\"" + str(identifier) + "\" net=\"1\" source=\""+ str(source-1) + "\" target=\"" + str(target-1) + "\" state=\"1\" "
         accumulator += "show=\"1\" pen=\"0,0,0\" brush=\"0,0,0\" edge_designtype=\"3\">\n"
@@ -119,7 +186,7 @@ class Edges:
         accumulator += "<![CDATA[" + expression + "]]>\n"
         accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" x=\"235.00\" y=\"200.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
-        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
         accumulator += "<graphic id=\"" + str(identifier) + "\" net=\"1\" source=\""+ str(source-1) + "\" target=\"" + str(target-1) + "\" state=\"1\" "
         accumulator += "show=\"1\" pen=\"0,0,0\" brush=\"0,0,0\" edge_designtype=\"2\">\n"
@@ -156,7 +223,7 @@ class Edges:
                 edgeAccumulator += self.makeEdge(placeID, transitionID, "ptalpha" + str(loop), "")
                 edgeAccumulator += self.makeEdge(transitionID, placeID, "0", "")
                 edgeAccumulator += self.makeEdge(placeID, betaTransitionID, "ptalpha" + str(loop), "")
-                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, "ptalpha" + str(loop) + " + 1", "")
+                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, "maxD(ptalpha" + str(loop) + " + 1)", "")
                 loop += 1
             except KeyError:
                 loop = -1
@@ -179,18 +246,19 @@ class Edges:
             placeID = self.placesDictionnary[name]
             transitionID = self.transitionsDictionnary["tbeta"]
             edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
-            edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityCompound(name), "")
+            edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityDecayCompound(name), "")
         
         # A loop to create all the edges going to and from the entities places to their transition (using the potential definition)
         rePattern = re.compile("[a-zA-Z0-9]+,[+\-][0-9]+")
         splittedPotential = self.potentialDefinition.split("\n")
-        for i in range(len(splittedPotential)):
-            products = splittedPotential[i].split("->")[1]
-            for j in re.findall(rePattern, products):
-                name = j.split(",")[0]
-                placeID = self.placesDictionnary[name]
-                transitionID = self.transitionsDictionnary["talpha" + str(i)]
-                edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
-                edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityCompound(name), "")
+        if not((len(splittedPotential) == 1) & (splittedPotential[0].rstrip().lstrip() == "")):
+            for i in range(len(splittedPotential)):
+                products = splittedPotential[i].split("->")[1]
+                for j in re.findall(rePattern, products):
+                    name = j.split(",")[0]
+                    placeID = self.placesDictionnary[name]
+                    transitionID = self.transitionsDictionnary["talpha" + str(i)]
+                    edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
+                    edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityCompound(name), "")
         
         return startEdges + edgeAccumulator + endEdge + startReadEdge + readEdgeAccumulator + endReadEdge

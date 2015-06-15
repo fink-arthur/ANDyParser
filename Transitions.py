@@ -148,9 +148,10 @@ class Transitions:
         endTransitions = "</nodeclass>\n"
         accumulator = ""
         splittedDefinition = self.potentialDefinition.split("\n")
-        for i in range(len(splittedDefinition)):
-            # A loop to create the transitions for each potential definition
-            accumulator += self.makePotentialTransition(splittedDefinition[i], i)
+        if not((len(splittedDefinition) == 1) & (splittedDefinition[0].rstrip().lstrip() == "")):
+            for i in range(len(splittedDefinition)):
+                # A loop to create the transitions for each potential definition
+                accumulator += self.makePotentialTransition(splittedDefinition[i], i)
         accumulator += self.makeMandatoryTransition() # creates the unique transition for all the mandatory activities
         with open("transitions.c", 'w') as f:
             pickle.dump(self.transitionsDictionnary, f)

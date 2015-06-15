@@ -26,16 +26,20 @@ class Colours:
         """
         Returns D for all the activities where D is the highest duration for an activity
         """
+        splittedPotential = self.potentialDefinition.split("\n")
         maximumPotential = 0
-        for i in self.potentialDefinition.split("\n"):
-            duration = int(i.split("-")[1])
-            if (duration > maximumPotential):
-                maximumPotential = duration
+        if not((len(splittedPotential) == 1) & (splittedPotential[0].rstrip().lstrip() == "")):
+            for i in splittedPotential:
+                duration = int(i.split("-")[1])
+                if (duration > maximumPotential):
+                    maximumPotential = duration
+        splittedMandatory = self.mandatoryDefinition.split("\n")
         maximumMandatory = 0
-        for i in self.mandatoryDefinition.split("\n"):
-            duration = int(i.split("-")[1])
-            if (duration > maximumPotential):
-                maximumMandatory = duration
+        if not((len(splittedMandatory) == 1) & (splittedMandatory[0].rstrip().lstrip() == "")):
+            for i in splittedMandatory:
+                duration = int(i.split("-")[1])
+                if (duration > maximumPotential):
+                    maximumMandatory = duration
         if (maximumMandatory > maximumPotential):
             return maximumMandatory
         else:
