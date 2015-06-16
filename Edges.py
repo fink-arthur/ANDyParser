@@ -109,14 +109,19 @@ class Edges:
     def makingMin(self, a, b):
         return "((" + a  + ")+(" + b + "))/2-(abs((" + a + ")-(" + b + "))/2)" 
     
-    def creatingEntityDecayCompound(self, entityName):
+    def makingLambda(self, entityName, zero):
         D = self.figuringDOut()
         numberOfLevel = self.numberOfLevel(entityName)
         lambdaAccumulator = "(" + self.makingMin(str(D), "(lbd" + entityName + ":1)+1")
         for i in range(1,numberOfLevel):
-            lambdaAccumulator += "," + self.makingMin(str(D), "(lbd" + entityName + ":" + str(i + 1) +")+1")
+            if zero == i:
+                lambdaAccumulator += ",0"
+            else:
+                lambdaAccumulator += "," + self.makingMin(str(D), "(lbd" + entityName + ":" + str(i + 1) +")+1")
         lambdaAccumulator += ")"
-        
+        return lambdaAccumulator
+    
+    def creatingEntityDecayCompound(self, entityName):
         accumulator = ""
         splittedDefinition = self.entityDefinition.split("\n")
         for i in splittedDefinition:
@@ -125,10 +130,10 @@ class Edges:
         d = self.figuringdOut(entityDefinition)
         splittedDefinition = entityDefinition.split(":")
         splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
-        accumulator += "[level" + entityName + "=0](0," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + lambdaAccumulator + ")"
+        accumulator += "[level" + entityName + "=0](0," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + self.makingLambda(entityName, None) + ")"
         for i in range(1,len(splittedLevel)):
-            accumulator += "++[level" + entityName + "=" + str(i) + "& timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + lambdaAccumulator + ")"
-            accumulator += "++[level" + entityName + "=" + str(i) + "& timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + lambdaAccumulator + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + "& timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + self.makingLambda(entityName, i) + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + "& timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + self.makingLambda(entityName, None) + ")"
         
         return accumulator
     
@@ -155,7 +160,7 @@ class Edges:
         accumulator += "<![CDATA[" + expression + "]]>\n"
         accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" x=\"245.00\" y=\"200.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
-        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
         accumulator += "<graphic id=\"" + str(identifier) + "\" net=\"1\" source=\""+ str(source-1) + "\" target=\"" + str(target-1) + "\" state=\"1\" "
         accumulator += "show=\"1\" pen=\"0,0,0\" brush=\"0,0,0\" edge_designtype=\"3\">\n"
@@ -186,7 +191,7 @@ class Edges:
         accumulator += "<![CDATA[" + expression + "]]>\n"
         accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"25.00\" x=\"235.00\" y=\"200.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
-        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
+        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n"
         accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
         accumulator += "<graphic id=\"" + str(identifier) + "\" net=\"1\" source=\""+ str(source-1) + "\" target=\"" + str(target-1) + "\" state=\"1\" "
         accumulator += "show=\"1\" pen=\"0,0,0\" brush=\"0,0,0\" edge_designtype=\"2\">\n"
