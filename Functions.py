@@ -67,18 +67,8 @@ class Functions:
         startString += "</attribute>\n<attribute name=\"Comment\" id=\"10159\" net=\"1\">\n<![CDATA[]]>\n<graphics count=\"0\"/>\n</attribute>\n<attribute name=\"FunctionList\" type=\"ColList\" id=\"10160\" net=\"1\">\n<colList row_count=\"0\" col_count=\"6\" active_row=\"0\" active_col=\"0\">\n<colList_head>\n<colList_colLabel>\n"
         startString += "<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n<colList_colLabel>\n<![CDATA[]]>\n</colList_colLabel>\n</colList_head>\n<colList_body>"
         endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n</metadataclasses>\n</Snoopy>"
+        
         accumulator = ""
-        numberOfEntity = self.entityDefinition.count("\n") + 1
-        
-        #splittedEntityDefinition = self.entityDefinition.split("\n")
-        #for i in range(len(splittedEntityDefinition)):
-        #    name = splittedEntityDefinition[i].split(":")[0].rstrip().lstrip()
-        #    accumulator += self.makeFunction(i, "l" + name, "decayl" + name, "l" + name + " l, u" + name + " u", self.makeDecayLevelFunctionDefinition(splittedEntityDefinition[i]))
-        
-        #for i in range(len(splittedEntityDefinition)):
-        #    name = splittedEntityDefinition[i].split(":")[0].rstrip().lstrip()
-        #    accumulator += self.makeFunction(i + numberOfEntity, "u" + name, "decayu" + name, "l" + name + " l, u" + name + " u", self.makeDecayTimerFunctionDefinition(splittedEntityDefinition[i]))
-        
         accumulator += self.makeFunction(1, "int", "maxD", "int level", self.makeMaxFunctionDefintion(self.figuringDOut()))
         
         return startString + accumulator + endString

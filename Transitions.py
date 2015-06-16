@@ -16,7 +16,7 @@ class Transitions:
         # numberOfTransitions = numberOfPotential + 1 (only one transition for the mandatory activities)
         self.numberOfTransitions = (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + 1
         self.iteratorNumberOfTransitions = iter(range(self.numberOfTransitions))
-        self.transitionsDictionnary = dict()
+        self.transitionsDictionary = dict()
         
     def activatorStringToGuard(self, string, delta):
         """
@@ -51,8 +51,10 @@ class Transitions:
         rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
         accumulator = ""
         for i in re.findall(rePattern, activators):
+            # A loop to create the guards for an activator
             accumulator += self.activatorStringToGuard(i, delta)
         for i in re.findall(rePattern, inhibitors):
+            # A loop to create the guards for an inhibitor
             accumulator += self.inhibitorStringToGuard(i, delta)
         return accumulator + "ptalpha" + str(definitionNumber) + ">=" + string.split("-")[1]
     
@@ -66,7 +68,7 @@ class Transitions:
         else:
             name = "tbeta"
         nodeID = self.iterator.next()
-        self.transitionsDictionnary.setdefault(name, nodeID)
+        self.transitionsDictionary.setdefault(name, nodeID)
         accumulator = ""
         accumulator += "<node id=\"" + str(nodeID) + "\" net=\"1\">\n"
         accumulator +="<attribute name=\"Name\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n" # Setting the name of the transition
@@ -154,5 +156,5 @@ class Transitions:
                 accumulator += self.makePotentialTransition(splittedDefinition[i], i)
         accumulator += self.makeMandatoryTransition() # creates the unique transition for all the mandatory activities
         with open("transitions.c", 'w') as f:
-            pickle.dump(self.transitionsDictionnary, f)
+            pickle.dump(self.transitionsDictionary, f)
         return startTransitions + accumulator + endTransitions

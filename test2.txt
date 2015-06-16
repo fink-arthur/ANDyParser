@@ -21,3 +21,4 @@ Insulin : [0,3,3]
 %%
 
 (Glycemia,3)
+(Insulin,2)

@@ -17,7 +17,7 @@ class Places:
         # numberOfPLaces = numberOfEntities + numberOfPotential + numberOfMandatory
         self.numberOfPlaces = (self.entityDefinition.rstrip().lstrip().count("\n") + 1) + (self.potentialDefinition.rstrip().lstrip().count("\n") + 1) + (self.mandatoryDefinition.rstrip().lstrip().count("\n") + 1)
         self.iteratorNumberOfPlaces = iter(range(self.numberOfPlaces))
-        self.placesDictionnary = dict()
+        self.placesDictionary = dict()
         self.initialMarking = dict()
         rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
         for i in re.findall(rePattern, initialMarking):
@@ -29,7 +29,7 @@ class Places:
         (this is used both by the activity and the entity functions)
         """
         nodeID = self.iterator.next()
-        self.placesDictionnary.setdefault(name, nodeID)
+        self.placesDictionary.setdefault(name, nodeID)
         accumulator = ""
         accumulator += "<node id=\"" + str(nodeID) + "\" net=\"1\">\n"
         accumulator +="<attribute name=\"Name\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<![CDATA[" + name + "]]>\n" # Setting the name of the place
@@ -61,9 +61,12 @@ class Places:
             accumulator += ",0"
         return accumulator
     
-    def creatingInitialMarking(self, name):
+    def creatingInitialMarking(self, entityName):
+        """
+        Returns the initial marking of the entity named entityName
+        """
         try:
-            return self.initialMarking[name]
+            return self.initialMarking[entityName]
         except KeyError:
             return "0"
 
@@ -75,7 +78,7 @@ class Places:
         accumulator += "<attribute name=\"MarkingList\" type=\"ColList\" id=\"" + str(self.iterator.next()) + "\" net=\"1\">\n<colList row_count=\"1\" col_count=\"2\" active_row=\"0\" active_col=\"0\">\n"
         accumulator += "<colList_head>\n<colList_colLabel>\n<![CDATA[Color/Predicate/Function]]>\n</colList_colLabel>\n"
         accumulator += "<colList_colLabel>\n<![CDATA[Marking]]>\n</colList_colLabel>\n</colList_head>\n<colList_body>\n"
-        # the next 2 lines initialize the marking with everything at 0 and a single token
+        # the next 2 lines initialize the marking with the initial marking of the entity with one token
         accumulator += "<colList_row nr=\"0\">\n<colList_col nr=\"0\">\n<![CDATA[" + "(" + self.creatingInitialMarking(name) + ",0,(" + self.creatingLambda(numberOfLevel) + "))" + "]]>\n</colList_col>\n<colList_col nr=\"1\">\n"
         accumulator += "<![CDATA[1]]>\n</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"34.00\" yoff=\"-19.00\" x=\"214.00\" y=\"181.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
@@ -146,5 +149,5 @@ class Places:
                 # A loop to create all the places for each mandatory activity
                 accumulator += self.makeActivityPlace(self.iterator.next(), "pbeta" + str(i))
         with open("places.c", 'w') as f:
-            pickle.dump(self.placesDictionnary, f)
+            pickle.dump(self.placesDictionary, f)
         return startPlaces + accumulator + endPlaces

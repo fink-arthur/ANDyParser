@@ -4,7 +4,7 @@ This is a parser that will automatically generate an ANDy (Activity Network with
 
 ## How to:
 
-This parser takes as an input a file, that must follow these guidelines:
+This parser takes as an input a file that must follow these guidelines:
 
 #### Entities
 
@@ -19,7 +19,7 @@ cI : [0,2]
 #### Potential activities 
  
 The next element that needs to be defined are potential activities, we seperate them from the entities by using "%%".
-They must all be defined in one block and must contain the activators, inhibitors adn results as well as the duration
+They must all be defined in one block and must contain the activators, inhibitors and results as well as the duration
  example:
  
 ();((cI,1)) -2-> ((tetR,+1))
@@ -41,4 +41,4 @@ It is seprated from the mandatory activities by "%%", and definied in one block
  
 (tetR,1)
 (cI,0)
-(lacI,3) 
+(lacI,3)

@@ -26,6 +26,7 @@ class Colours:
         """
         Returns D for all the activities where D is the highest duration for an activity
         """
+        # Calculating D for the potential activities
         splittedPotential = self.potentialDefinition.split("\n")
         maximumPotential = 0
         if not((len(splittedPotential) == 1) & (splittedPotential[0].rstrip().lstrip() == "")):
@@ -33,6 +34,7 @@ class Colours:
                 duration = int(i.split("-")[1])
                 if (duration > maximumPotential):
                     maximumPotential = duration
+        # Calculating D for the mandatory activities
         splittedMandatory = self.mandatoryDefinition.split("\n")
         maximumMandatory = 0
         if not((len(splittedMandatory) == 1) & (splittedMandatory[0].rstrip().lstrip() == "")):
