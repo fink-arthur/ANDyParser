@@ -117,19 +117,21 @@ class Edges:
         """
         Returns the mininum between a and b without using a predicate
         """
-        return "(" + a  + "+(" + b + "))/2-(abs(" + a + "-(" + b + "))/2)" 
+        #return "(" + a + "+" + b + ")/2-abs(" + a + "-(" + b + "))/2"
+        return "( " + a + " + " + b + " ) / 2 - abs( " + a + " - (" + b + ") ) / 2"
+        #return b
     
     def makingMaxLambda(self, entityName, zero):
         """
         Returns a lambda where each part is a maxed with the D value
         """
         numberOfLevel = self.numberOfLevel(entityName)
-        lambdaAccumulator = "(" + self.makingMin(str(self.D), "(lbd" + entityName + ":1)+1")
+        lambdaAccumulator = "(" + self.makingMin("(lbd" + entityName + ":1)+1", str(self.D))
         for i in range(1,numberOfLevel):
             if zero == i:
                 lambdaAccumulator += ",0"
             else:
-                lambdaAccumulator += "," + self.makingMin(str(self.D), "(lbd" + entityName + ":" + str(i + 1) +")+1")
+                lambdaAccumulator += "," + self.makingMin("(lbd" + entityName + ":" + str(i + 1) +")+1", str(self.D))
         lambdaAccumulator += ")"
         return lambdaAccumulator
     
@@ -169,10 +171,10 @@ class Edges:
         d = self.figuringdOut(entityDefinition)
         splittedDefinition = entityDefinition.split(":")
         splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
-        accumulator += "[level" + entityName + "=0](0," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + self.makingMaxLambda(entityName, None) + ")"
+        accumulator += "[level" + entityName + "=0](0,0," + self.makingMaxLambda(entityName, None) + ")"
         for i in range(1,len(splittedLevel)):
             accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + self.makingMaxLambda(entityName, i) + ")"
-            accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + self.makingMin(str(d), "timer" + entityName + "+1") + "," + self.makingMaxLambda(entityName, None) + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + self.makingMin("timer" + entityName + "+1", str(d)) + "," + self.makingMaxLambda(entityName, None) + ")"
         
         return accumulator
     
@@ -182,10 +184,10 @@ class Edges:
         """
         numberOfLevel = self.numberOfLevel(entityName)
         accumulator = "[level" + entityName + "=0 & 0" + levelUpdate + "<0](0,0," + self.makingLambda(entityName, 0, levelUpdate) + ")"
-        accumulator += "++[level" + entityName + "=0 & 0" + levelUpdate + ">=0](" + self.makingMin(str(numberOfLevel - 1), "level" + entityName + levelUpdate) + ",0," + self.makingLambda(entityName, 0, levelUpdate) + ")"
+        accumulator += "++[level" + entityName + "=0 & 0" + levelUpdate + ">=0](" + self.makingMin("level" + entityName + levelUpdate, str(numberOfLevel - 1)) + ",0," + self.makingLambda(entityName, 0, levelUpdate) + ")"
         for i in range(1,numberOfLevel):
             accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + "<0](0,0," + self.makingLambda(entityName, i, levelUpdate) + ")"
-            accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + ">=0](" + self.makingMin(str(numberOfLevel - 1), "level" + entityName + levelUpdate) + ",0," + self.makingLambda(entityName, i, levelUpdate) + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + ">=0](" + self.makingMin("level" + entityName + levelUpdate, str(numberOfLevel - 1)) + ",0," + self.makingLambda(entityName, i, levelUpdate) + ")"
         return accumulator
     
     def makeEdge(self, source, target, expression, name):
