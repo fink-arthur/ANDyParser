@@ -194,37 +194,29 @@ class Edges:
             n -= 1
         return l
     
-    def activatorStringToGuard(self, string, delta, opposite):
+    def activatorStringToGuard(self, string, delta):
         """
         Returns a string that is a guard for the activator in string
         """
         name = string.split(",")[0]
         level = string.split(",")[1]
         accumulator = ""
-        if not(opposite):
-            accumulator += "level" + name + " >= " + level + " & "
-            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta
-        else:
-            accumulator += "(level" + name + " < " + level + " | "
-            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " < " + delta + ")"
+        accumulator += "level" + name + " >= " + level + " & "
+        accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta
         return accumulator
     
-    def inhibitorStringToGuard(self, string, delta, opposite):
+    def inhibitorStringToGuard(self, string, delta):
         """
         Returns a string that is a guard for the inhibitor in string
         """
         name = string.split(",")[0]
         level = string.split(",")[1]
         accumulator = ""
-        if not(opposite):
-            accumulator += "level" + name + " < " + level + " & "
-            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta
-        else:
-            accumulator += "(level" + name + " >= " + level + " | "
-            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " < " + delta + ")"
+        accumulator += "level" + name + " < " + level + " & "
+        accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta
         return accumulator
     
-    def stringToCondition(self, string, opposite):
+    def stringToCondition(self, string, opposite, mandatoryNumber):
         """
         Returns the guard that will be used by the transitions for the activity contained in the string
         """
@@ -236,18 +228,23 @@ class Edges:
         accumulator = ""
         for i in re.findall(rePattern, activators):
             # A loop to create the conditions for an activator
-            accumulator += self.activatorStringToGuard(i, delta, opposite) + "&"
+            accumulator += self.activatorStringToGuard(i, delta) + "&"
         for i in re.findall(rePattern, inhibitors):
             # A loop to create the conditions for an inhibitor
-            accumulator += self.inhibitorStringToGuard(i, delta, opposite) + "&"
-        return accumulator[:-1]
+            accumulator += self.inhibitorStringToGuard(i, delta) + "&"
+        accumulator += "ptbeta" + mandatoryNumber + ">=" + delta
+        if opposite:
+            return "!("+ accumulator + ")"
+        else:
+            return accumulator
+        #return accumulator[:-1]
     
-    def creatingExpression(self, name, mandatory, level, decayTimer):
+    def creatingExpression(self, name, mandatory, level, decayTimer, levelMax):
         splittedMandatory = self.mandatoryDefinition.split("\n")
         conditions = ["timer" + name + ">=" + decayTimer]
-        conditions.extend([self.stringToCondition(splittedMandatory[int(x)], False) for x in mandatory])
+        conditions.extend([self.stringToCondition(splittedMandatory[int(x)], False, x) for x in mandatory])
         notConditions = ["timer" + name + "<" + decayTimer]
-        notConditions.extend([self.stringToCondition(splittedMandatory[int(x)], True) for x in mandatory])
+        notConditions.extend([self.stringToCondition(splittedMandatory[int(x)], True, x) for x in mandatory])
         possibilityList = self.makingList(len(mandatory) + 1)
         accumulator = ""
         for i in range(len(possibilityList)):
@@ -271,15 +268,15 @@ class Edges:
             
             if possibilityList[i].count("0") == len(possibilityList[i]):
                 if (decayTimer == 0):
-                    accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",0," + self.makingLambda(name, 0, 0, True) + ")"
+                    accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",0," + self.makingMaxLambda(name, None) + ")"
                 else:
-                    accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",timer" + name + "+1," + self.makingLambda(name, 0, 0, True) + ")"
+                    accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",timer" + name + "+1," + self.makingMaxLambda(name, None) + ")"
             else:
                 if update >= 0:
                     update = "+" + str(update)
                 else:
                     update = str(update)
-                accumulator += "[" + condition + "level" + name + "=" + level + "& level" + name + update + ">=0](level" + name + update + ",0," + self.makingLambda(name, int(level), int(update), True)+")"
+                accumulator += "[" + condition + "level" + name + "=" + level + "& level" + name + update + ">=0](" + self.makingMin("level" + name + update, str(levelMax)) + ",0," + self.makingLambda(name, int(level), int(update), True)+")"
                 accumulator += "++[" + condition + "level" + name + "=" + level + "& level" + name + update + "<0](0,0," + self.makingLambda(name, int(level), int(update), True)+")"
             
             #if(i < len(possibilityList[i])):
@@ -306,7 +303,7 @@ class Edges:
                 mandatory = self.mandatoryProducts[entityName]
             except KeyError:
                 mandatory = []
-            accumulator += self.creatingExpression(entityName, mandatory, str(i), splittedLevel[i])
+            accumulator += self.creatingExpression(entityName, mandatory, str(i), splittedLevel[i], len(splittedLevel)-1)
         
         return accumulator[:-2]
     
@@ -425,7 +422,9 @@ class Edges:
                 placeID = self.placesDictionary["pbeta" + str(loop)]
                 transitionID = self.transitionsDictionary["tbeta"]
                 edgeAccumulator += self.makeEdge(placeID, transitionID, "ptbeta" + str(loop), "")
-                edgeAccumulator += self.makeEdge(transitionID, placeID, "maxD(ptbeta" + str(loop) + " + 1)", "")
+                guard = self.stringToCondition(self.mandatoryDefinition.split("\n")[loop], False, str(loop))
+                oppositeGuard = self.stringToCondition(self.mandatoryDefinition.split("\n")[loop], True, str(loop))
+                edgeAccumulator += self.makeEdge(transitionID, placeID, "[" + oppositeGuard + "]" + self.makingMin("ptbeta" + str(loop) + " + 1", str(self.D)) +"++[" + guard + "]0", "")
                 loop += 1
             except KeyError:
                 loop = -1
@@ -450,7 +449,5 @@ class Edges:
                     transitionID = self.transitionsDictionary["talpha" + str(i)]
                     edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
                     edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityProductCompound(name, j.split(",")[1]), "")
-        
-        self.mandatoryProduct()
         
         return startEdges + edgeAccumulator + endEdge + startReadEdge + readEdgeAccumulator + endReadEdge

@@ -101,7 +101,7 @@ class Transitions:
         accumulator += "<colList_col nr=\"1\">\n<![CDATA[" + self.stringToGuard(string, definitionNumber) + "]]>\n" # Setting the guard for the transition
         accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"45.00\" yoff=\"-25.00\" x=\"305.00\" y=\"175.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
-        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphical preferences for the guard
+        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphical preferences for the guard
         accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
         accumulator += "<graphic x=\"260.00\" y=\"200.00\" id=\"" + str(identifier) + "\" net=\"1\" "
         accumulator += "show=\"1\" w=\"20.00\" h=\"20.00\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphical preferences for the transition itself
@@ -128,7 +128,7 @@ class Transitions:
         accumulator += "<colList_col nr=\"1\">\n<![CDATA[]]>\n" # Setting the guard to True for the transition
         accumulator += "</colList_col>\n</colList_row>\n</colList_body>\n</colList>\n<graphics count=\"1\">\n"
         accumulator += "<graphic xoff=\"45.00\" yoff=\"-25.00\" x=\"305.00\" y=\"175.00\" id=\"" + str(self.iterator.next()) + "\" net=\"1\" "
-        accumulator += "show=\"1\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphical preferences for the guard
+        accumulator += "show=\"0\" grparent=\"" + str(identifier) + "\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphical preferences for the guard
         accumulator += "</graphics>\n</attribute>\n<graphics count=\"1\">\n"
         accumulator += "<graphic x=\"260.00\" y=\"200.00\" id=\"" + str(identifier) + "\" net=\"1\" "
         accumulator += "show=\"1\" w=\"20.00\" h=\"20.00\" state=\"1\" pen=\"0,0,0\" brush=\"255,255,255\"/>\n" # graphical preferences for the transition itself
