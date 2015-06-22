@@ -19,6 +19,7 @@ class Edges:
         self.potentialDefinition = potentialDefinition
         self.mandatoryDefinition = mandatoryDefinition
         self.D = self.figuringDOut()
+        self.mandatoryProducts = self.mandatoryProduct()
         
     def bothSides(self):
         """
@@ -45,6 +46,20 @@ class Edges:
                     name = j.split(",")[0].rstrip().lstrip()
                     potentialActivitydictionary.setdefault(name, products.count("(" + name + ",") > 0)
                 dictionary.setdefault("alpha" + (str(i)), potentialActivitydictionary)
+        return dictionary
+    
+    def mandatoryProduct(self):
+        dictionary = dict()
+        splittedMandatory = self.mandatoryDefinition.split("\n")
+        rePattern = re.compile("[a-zA-Z0-9]+,[+\-][0-9]+")
+        if not((len(splittedMandatory) == 1) & (splittedMandatory[0].rstrip().lstrip() == "")):
+            for i in range(len(splittedMandatory)):
+                for j in re.findall(rePattern, splittedMandatory[i]):
+                    name = j.split(",")[0]
+                    try:
+                        dictionary.setdefault(name,dictionary[name].append(str(i)))
+                    except KeyError:
+                        dictionary.setdefault(name,list(str(i)))
         return dictionary
     
     def countReadEdges(self, dictionary):
@@ -117,9 +132,9 @@ class Edges:
         """
         Returns the mininum between a and b without using a predicate
         """
-        #return "(" + a + "+" + b + ")/2-abs(" + a + "-(" + b + "))/2"
-        return "( " + a + " + " + b + " ) / 2 - abs( " + a + " - (" + b + ") ) / 2"
-        #return b
+        return "(" + a + "+" + b + ")/2-abs(" + a + "-(" + b + "))/2"
+        #return "( " + a + " + " + b + " ) / 2 - abs( " + a + " - (" + b + ") ) / 2"
+        #return "abs(" + b +")"
     
     def makingMaxLambda(self, entityName, zero):
         """
@@ -135,7 +150,7 @@ class Edges:
         lambdaAccumulator += ")"
         return lambdaAccumulator
     
-    def makingLambda(self, entityName, entityLevel, levelUpdate):
+    def makingLambda(self, entityName, entityLevel, levelUpdate, maximum):
         """
         Returns a lambda with the value at 0 after an update at level entityLevel
         """
@@ -145,13 +160,23 @@ class Edges:
             entityLevel += lu
             lu = abs(lu)
         numberOfLevel = self.numberOfLevel(entityName)
-        accumulator += "(lbd" + entityName + ":1"
+        if not(maximum):
+            accumulator += "(lbd" + entityName + ":1"
+        else: 
+            accumulator += "(" + self.makingMin("(lbd" + entityName + ":1)+1", str(self.D))
         for i in range(1, numberOfLevel):
             if ((entityLevel != 0) & (lu != 0)):
-                accumulator += "," + "lbd" + entityName + ":" + str(i+1)
+                if not(maximum):
+                    accumulator += "," + "lbd" + entityName + ":" + str(i+1)
+                else: 
+                    accumulator += "," + self.makingMin("(lbd" + entityName + ":" + str(i + 1) +")+1", str(self.D))
                 entityLevel -= 1
-            elif ((entityLevel == 0) & (lu == 0)):
-                accumulator += "," + "lbd" + entityName + ":" + str(i+1)
+            #elif ((entityLevel == 0) & (lu == 0)):
+            elif lu == 0:
+                if not(maximum):
+                    accumulator += "," + "lbd" + entityName + ":" + str(i+1)
+                else: 
+                    accumulator += "," + self.makingMin("(lbd" + entityName + ":" + str(i + 1) +")+1", str(self.D))
             else:
                 accumulator += ",0"
                 lu -= 1
@@ -159,7 +184,110 @@ class Edges:
         accumulator += ")"
         return accumulator
     
-    def creatingEntityDecayCompound(self, entityName):
+    def makingList(self,n):
+        l = [""]
+        while (n>0):
+            res1 = ["1" + x for x in l]
+            res2 = ["0" + x for x in l]
+            res1.extend(res2)
+            l = res1
+            n -= 1
+        return l
+    
+    def activatorStringToGuard(self, string, delta, opposite):
+        """
+        Returns a string that is a guard for the activator in string
+        """
+        name = string.split(",")[0]
+        level = string.split(",")[1]
+        accumulator = ""
+        if not(opposite):
+            accumulator += "level" + name + " >= " + level + " & "
+            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta
+        else:
+            accumulator += "(level" + name + " < " + level + " | "
+            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " < " + delta + ")"
+        return accumulator
+    
+    def inhibitorStringToGuard(self, string, delta, opposite):
+        """
+        Returns a string that is a guard for the inhibitor in string
+        """
+        name = string.split(",")[0]
+        level = string.split(",")[1]
+        accumulator = ""
+        if not(opposite):
+            accumulator += "level" + name + " < " + level + " & "
+            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " >= " + delta
+        else:
+            accumulator += "(level" + name + " >= " + level + " | "
+            accumulator += "lbd" + name + ":" + str(int(level) + 1) + " < " + delta + ")"
+        return accumulator
+    
+    def stringToCondition(self, string, opposite):
+        """
+        Returns the guard that will be used by the transitions for the activity contained in the string
+        """
+        activatorsAndInhibitors = string.split("-")[0]
+        delta = string.split("-")[1]
+        activators = activatorsAndInhibitors.split(";")[0]
+        inhibitors = activatorsAndInhibitors.split(";")[1]
+        rePattern = re.compile("[a-zA-Z0-9]+,[0-9]+")
+        accumulator = ""
+        for i in re.findall(rePattern, activators):
+            # A loop to create the conditions for an activator
+            accumulator += self.activatorStringToGuard(i, delta, opposite) + "&"
+        for i in re.findall(rePattern, inhibitors):
+            # A loop to create the conditions for an inhibitor
+            accumulator += self.inhibitorStringToGuard(i, delta, opposite) + "&"
+        return accumulator[:-1]
+    
+    def creatingExpression(self, name, mandatory, level, decayTimer):
+        splittedMandatory = self.mandatoryDefinition.split("\n")
+        conditions = ["timer" + name + ">=" + decayTimer]
+        conditions.extend([self.stringToCondition(splittedMandatory[int(x)], False) for x in mandatory])
+        notConditions = ["timer" + name + "<" + decayTimer]
+        notConditions.extend([self.stringToCondition(splittedMandatory[int(x)], True) for x in mandatory])
+        possibilityList = self.makingList(len(mandatory) + 1)
+        accumulator = ""
+        for i in range(len(possibilityList)):
+            
+            condition = ""
+            for j in range(len(possibilityList[i])):
+                if (possibilityList[i][j] == "0"):
+                    condition += notConditions[j] + " & "
+                else:
+                    condition += conditions[j] + " & "
+                
+            update = 0
+            for j in range(1, len(possibilityList[i])):
+                if possibilityList[i][j] == "1":
+                    rePattern = re.compile(name + ",[+-][0-9]+")
+                    for res in re.findall(rePattern, splittedMandatory[int(mandatory[j - 1])]):
+                        update += int(res.split(",")[1])
+            if possibilityList[i][0] == "1":
+                update -= 1
+            
+            
+            if possibilityList[i].count("0") == len(possibilityList[i]):
+                if (decayTimer == 0):
+                    accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",0," + self.makingLambda(name, 0, 0, True) + ")"
+                else:
+                    accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",timer" + name + "+1," + self.makingLambda(name, 0, 0, True) + ")"
+            else:
+                if update >= 0:
+                    update = "+" + str(update)
+                else:
+                    update = str(update)
+                accumulator += "[" + condition + "level" + name + "=" + level + "& level" + name + update + ">=0](level" + name + update + ",0," + self.makingLambda(name, int(level), int(update), True)+")"
+                accumulator += "++[" + condition + "level" + name + "=" + level + "& level" + name + update + "<0](0,0," + self.makingLambda(name, int(level), int(update), True)+")"
+            
+            #if(i < len(possibilityList[i])):
+            accumulator += "++"
+        
+        return accumulator
+    
+    def creatingEntityBetaCompound(self, entityName):
         """
         Returns an entity compound using the formula for the decay of the entity entityName
         """
@@ -168,26 +296,30 @@ class Edges:
         for i in splittedDefinition:
             if (entityName in i):
                 entityDefinition = i
-        d = self.figuringdOut(entityDefinition)
         splittedDefinition = entityDefinition.split(":")
         splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
-        accumulator += "[level" + entityName + "=0](0,0," + self.makingMaxLambda(entityName, None) + ")"
-        for i in range(1,len(splittedLevel)):
-            accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + self.makingMaxLambda(entityName, i) + ")"
-            accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + self.makingMin("timer" + entityName + "+1", str(d)) + "," + self.makingMaxLambda(entityName, None) + ")"
+        #accumulator += "[level" + entityName + "=0](0,0," + self.makingMaxLambda(entityName, None) + ")"
+        for i in range(len(splittedLevel)):
+            #accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + self.makingMaxLambda(entityName, i) + ")"
+            #accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + "timer" + entityName + "+1," + self.makingMaxLambda(entityName, None) + ")"
+            try:
+                mandatory = self.mandatoryProducts[entityName]
+            except KeyError:
+                mandatory = []
+            accumulator += self.creatingExpression(entityName, mandatory, str(i), splittedLevel[i])
         
-        return accumulator
+        return accumulator[:-2]
     
     def creatingEntityProductCompound(self, entityName, levelUpdate):
         """
         Returns an entity compound using the formula for an update of the entity entityName
         """
         numberOfLevel = self.numberOfLevel(entityName)
-        accumulator = "[level" + entityName + "=0 & 0" + levelUpdate + "<0](0,0," + self.makingLambda(entityName, 0, levelUpdate) + ")"
-        accumulator += "++[level" + entityName + "=0 & 0" + levelUpdate + ">=0](" + self.makingMin("level" + entityName + levelUpdate, str(numberOfLevel - 1)) + ",0," + self.makingLambda(entityName, 0, levelUpdate) + ")"
+        accumulator = "[level" + entityName + "=0 & 0" + levelUpdate + "<0](0,0," + self.makingLambda(entityName, 0, levelUpdate, False) + ")"
+        accumulator += "++[level" + entityName + "=0 & 0" + levelUpdate + ">=0](" + self.makingMin("level" + entityName + levelUpdate, str(numberOfLevel - 1)) + ",0," + self.makingLambda(entityName, 0, levelUpdate, False) + ")"
         for i in range(1,numberOfLevel):
-            accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + "<0](0,0," + self.makingLambda(entityName, i, levelUpdate) + ")"
-            accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + ">=0](" + self.makingMin("level" + entityName + levelUpdate, str(numberOfLevel - 1)) + ",0," + self.makingLambda(entityName, i, levelUpdate) + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + "<0](0,0," + self.makingLambda(entityName, i, levelUpdate, False) + ")"
+            accumulator += "++[level" + entityName + "=" + str(i) + " & " + str(i) + levelUpdate + ">=0](" + self.makingMin("level" + entityName + levelUpdate, str(numberOfLevel - 1)) + ",0," + self.makingLambda(entityName, i, levelUpdate, False) + ")"
         return accumulator
     
     def makeEdge(self, source, target, expression, name):
@@ -293,7 +425,7 @@ class Edges:
                 placeID = self.placesDictionary["pbeta" + str(loop)]
                 transitionID = self.transitionsDictionary["tbeta"]
                 edgeAccumulator += self.makeEdge(placeID, transitionID, "ptbeta" + str(loop), "")
-                edgeAccumulator += self.makeEdge(transitionID, placeID, "ptbeta" + str(loop), "")
+                edgeAccumulator += self.makeEdge(transitionID, placeID, "maxD(ptbeta" + str(loop) + " + 1)", "")
                 loop += 1
             except KeyError:
                 loop = -1
@@ -304,7 +436,7 @@ class Edges:
             placeID = self.placesDictionary[name]
             transitionID = self.transitionsDictionary["tbeta"]
             edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
-            edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityDecayCompound(name), "")
+            edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityBetaCompound(name), "")
         
         # A loop to create all the edges going to and from the entities places to their transition (using the potential definition)
         rePattern = re.compile("[a-zA-Z0-9]+,[+\-][0-9]+")
@@ -318,5 +450,7 @@ class Edges:
                     transitionID = self.transitionsDictionary["talpha" + str(i)]
                     edgeAccumulator += self.makeEdge(placeID, transitionID, self.creatingEntityCompound(name), "")
                     edgeAccumulator += self.makeEdge(transitionID, placeID, self.creatingEntityProductCompound(name, j.split(",")[1]), "")
+        
+        self.mandatoryProduct()
         
         return startEdges + edgeAccumulator + endEdge + startReadEdge + readEdgeAccumulator + endReadEdge
