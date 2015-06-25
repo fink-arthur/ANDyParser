@@ -49,12 +49,17 @@ class Edges:
         return dictionary
     
     def mandatoryProduct(self):
+        """
+        Returns a dictionary to know where entities are used as products in the mandatory activities
+        """
         dictionary = dict()
         splittedMandatory = self.mandatoryDefinition.split("\n")
         rePattern = re.compile("[a-zA-Z0-9]+,[+\-][0-9]+")
         if not((len(splittedMandatory) == 1) & (splittedMandatory[0].rstrip().lstrip() == "")):
             for i in range(len(splittedMandatory)):
+                # A loop to cycle through each mandatory activity
                 for j in re.findall(rePattern, splittedMandatory[i]):
+                    # A loop to know if the entity was already used as a product in another mandatory activity or not
                     name = j.split(",")[0]
                     try:
                         dictionary.setdefault(name,dictionary[name].append(str(i)))
@@ -133,8 +138,6 @@ class Edges:
         Returns the mininum between a and b without using a predicate
         """
         return "(" + a + "+" + b + ")/2-abs(" + a + "-(" + b + "))/2"
-        #return "( " + a + " + " + b + " ) / 2 - abs( " + a + " - (" + b + ") ) / 2"
-        #return "abs(" + b +")"
     
     def makingMaxLambda(self, entityName, zero):
         """
@@ -166,18 +169,20 @@ class Edges:
             accumulator += "(" + self.makingMin("(lbd" + entityName + ":1)+1", str(self.D))
         for i in range(1, numberOfLevel):
             if ((entityLevel != 0) & (lu != 0)):
+                # We are still below the level entityLevel
                 if not(maximum):
                     accumulator += "," + "lbd" + entityName + ":" + str(i+1)
                 else: 
                     accumulator += "," + self.makingMin("(lbd" + entityName + ":" + str(i + 1) +")+1", str(self.D))
                 entityLevel -= 1
-            #elif ((entityLevel == 0) & (lu == 0)):
             elif lu == 0:
+                # The level is greater than entityLevel + lu
                 if not(maximum):
                     accumulator += "," + "lbd" + entityName + ":" + str(i+1)
                 else: 
                     accumulator += "," + self.makingMin("(lbd" + entityName + ":" + str(i + 1) +")+1", str(self.D))
             else:
+                # The level is between entityLevel and entityLevel + lu
                 accumulator += ",0"
                 lu -= 1
             
@@ -185,6 +190,10 @@ class Edges:
         return accumulator
     
     def makingList(self,n):
+        """
+        Returns a list of all the possible combination of a size n list with only two choices 0 and 1
+        ex : 00,01,10,11
+        """
         l = [""]
         while (n>0):
             res1 = ["1" + x for x in l]
@@ -237,25 +246,32 @@ class Edges:
             return "!("+ accumulator + ")"
         else:
             return accumulator
-        #return accumulator[:-1]
     
     def creatingExpression(self, name, mandatory, level, decayTimer, levelMax):
+        """
+        Returns the expression for the entity named name and with a level level
+        """
         splittedMandatory = self.mandatoryDefinition.split("\n")
+        # We create all the conditions for the activity to happen
         conditions = ["timer" + name + ">=" + decayTimer]
         conditions.extend([self.stringToCondition(splittedMandatory[int(x)], False, x) for x in mandatory])
+        # We create all the conditions for the activity not to happen
         notConditions = ["timer" + name + "<" + decayTimer]
         notConditions.extend([self.stringToCondition(splittedMandatory[int(x)], True, x) for x in mandatory])
         possibilityList = self.makingList(len(mandatory) + 1)
         accumulator = ""
         for i in range(len(possibilityList)):
+            # A loop to go through each possibility of the possibilityList
             
+            # We create the condition for this possibility
             condition = ""
             for j in range(len(possibilityList[i])):
                 if (possibilityList[i][j] == "0"):
                     condition += notConditions[j] + " & "
                 else:
                     condition += conditions[j] + " & "
-                
+            
+            # We create the update level for this possibility
             update = 0
             for j in range(1, len(possibilityList[i])):
                 if possibilityList[i][j] == "1":
@@ -265,7 +281,7 @@ class Edges:
             if possibilityList[i][0] == "1":
                 update -= 1
             
-            
+            # We create the expression for this possibility
             if possibilityList[i].count("0") == len(possibilityList[i]):
                 if (decayTimer == 0):
                     accumulator += "[" + condition + "level" + name + "=" + level + "](level" + name + ",0," + self.makingMaxLambda(name, None) + ")"
@@ -279,7 +295,6 @@ class Edges:
                 accumulator += "[" + condition + "level" + name + "=" + level + "& level" + name + update + ">=0](" + self.makingMin("level" + name + update, str(levelMax)) + ",0," + self.makingLambda(name, int(level), int(update), True)+")"
                 accumulator += "++[" + condition + "level" + name + "=" + level + "& level" + name + update + "<0](0,0," + self.makingLambda(name, int(level), int(update), True)+")"
             
-            #if(i < len(possibilityList[i])):
             accumulator += "++"
         
         return accumulator
@@ -295,10 +310,7 @@ class Edges:
                 entityDefinition = i
         splittedDefinition = entityDefinition.split(":")
         splittedLevel = splittedDefinition[1].rstrip().lstrip()[1:-1].split(",")
-        #accumulator += "[level" + entityName + "=0](0,0," + self.makingMaxLambda(entityName, None) + ")"
         for i in range(len(splittedLevel)):
-            #accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + ">=" + str(splittedLevel[i]) + "]" + "(level" + entityName + "-1,0," + self.makingMaxLambda(entityName, i) + ")"
-            #accumulator += "++[level" + entityName + "=" + str(i) + " & timer" + entityName + "<" + str(splittedLevel[i]) + "]" + "(level" + entityName + "," + "timer" + entityName + "+1," + self.makingMaxLambda(entityName, None) + ")"
             try:
                 mandatory = self.mandatoryProducts[entityName]
             except KeyError:
