@@ -32,7 +32,7 @@ class Parser:
         return 1
         
 if __name__ == '__main__':
-    parser = Parser("test.txt")
+    parser = Parser("test2.txt")
     print(parser.makeFile())
     os.remove("places.c")
     os.remove("transitions.c")

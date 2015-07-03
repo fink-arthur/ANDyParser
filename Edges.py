@@ -422,8 +422,9 @@ class Edges:
                 edgeAccumulator += self.makeEdge(placeID, transitionID, "ptalpha" + str(loop), "")
                 edgeAccumulator += self.makeEdge(transitionID, placeID, "0", "")
                 edgeAccumulator += self.makeEdge(placeID, betaTransitionID, "ptalpha" + str(loop), "")
-                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, "maxD(ptalpha" + str(loop) + " + 1)", "")
+                edgeAccumulator += self.makeEdge(betaTransitionID, placeID, self.makingMin("ptalpha" + str(loop) + "+1", str(self.D)), "")
                 loop += 1
+                # "maxD(ptalpha" + str(loop) + " + 1)"
             except KeyError:
                 loop = -1
         

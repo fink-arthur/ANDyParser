@@ -69,6 +69,6 @@ class Functions:
         endString = "</colList_body>\n</colList>\n<graphics count=\"0\"/>\n</attribute>\n<graphics count=\"0\"/>\n</metadata>\n</metadataclass>\n</metadataclasses>\n</Snoopy>"
         
         accumulator = ""
-        accumulator += self.makeFunction(1, "int", "maxD", "int level", self.makeMaxFunctionDefintion(self.figuringDOut()))
+        #accumulator += self.makeFunction(1, "int", "maxD", "int level", self.makeMaxFunctionDefintion(self.figuringDOut()))
         
         return startString + accumulator + endString
