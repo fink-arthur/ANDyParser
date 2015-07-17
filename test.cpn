@@ -1,0 +1,1885 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE workspaceElements PUBLIC "-//CPN//DTD CPNXML 1.0//EN" "http://www.daimi.au.dk/~cpntools/bin/DTD/2/cpn.dtd">
+<workspaceElements>
+  <generator tool="CPN Tools" version="2.2.0" format="6"/>
+  <cpnet>
+    <globbox>
+      <color id="id100">
+        <id>lSugar</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>1</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id101">
+        <id>lAspartame</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>1</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id102">
+        <id>lGlycemia</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>3</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id103">
+        <id>lGlucagon</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>1</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id104">
+        <id>lInsulin</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>2</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id105">
+        <id>uSugar</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>2</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id106">
+        <id>uAspartame</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>2</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id107">
+        <id>uGlycemia</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>8</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id108">
+        <id>uGlucagon</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>3</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id109">
+        <id>uInsulin</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>3</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id110">
+        <id>D</id>
+        <int>
+          <with>
+            <ml>0</ml>
+            <ml>1</ml>
+          </with>
+        </int>
+      </color>
+      <color id="id111">
+        <id>lambdaSugar</id>
+        <product>
+          <id>D</id>
+          <id>D</id>
+        </product>
+      </color>
+      <color id="id112">
+        <id>lambdaAspartame</id>
+        <product>
+          <id>D</id>
+          <id>D</id>
+        </product>
+      </color>
+      <color id="id113">
+        <id>lambdaGlycemia</id>
+        <product>
+          <id>D</id>
+          <id>D</id>
+          <id>D</id>
+          <id>D</id>
+        </product>
+      </color>
+      <color id="id114">
+        <id>lambdaGlucagon</id>
+        <product>
+          <id>D</id>
+          <id>D</id>
+        </product>
+      </color>
+      <color id="id115">
+        <id>lambdaInsulin</id>
+        <product>
+          <id>D</id>
+          <id>D</id>
+          <id>D</id>
+        </product>
+      </color>
+      <color id="id116">
+        <id>Sugar</id>
+        <product>
+          <id>lSugar</id>
+          <id>uSugar</id>
+          <id>lambdaSugar</id>
+        </product>
+      </color>
+      <color id="id117">
+        <id>Aspartame</id>
+        <product>
+          <id>lAspartame</id>
+          <id>uAspartame</id>
+          <id>lambdaAspartame</id>
+        </product>
+      </color>
+      <color id="id118">
+        <id>Glycemia</id>
+        <product>
+          <id>lGlycemia</id>
+          <id>uGlycemia</id>
+          <id>lambdaGlycemia</id>
+        </product>
+      </color>
+      <color id="id119">
+        <id>Glucagon</id>
+        <product>
+          <id>lGlucagon</id>
+          <id>uGlucagon</id>
+          <id>lambdaGlucagon</id>
+        </product>
+      </color>
+      <color id="id120">
+        <id>Insulin</id>
+        <product>
+          <id>lInsulin</id>
+          <id>uInsulin</id>
+          <id>lambdaInsulin</id>
+        </product>
+      </color>
+      <var id="id121">
+        <type>
+          <id>lambdaAspartame</id>
+        </type>
+        <id>lbdAspartame</id>
+      </var>
+      <var id="id122">
+        <type>
+          <id>lambdaGlucagon</id>
+        </type>
+        <id>lbdGlucagon</id>
+      </var>
+      <var id="id123">
+        <type>
+          <id>lambdaGlycemia</id>
+        </type>
+        <id>lbdGlycemia</id>
+      </var>
+      <var id="id124">
+        <type>
+          <id>lambdaInsulin</id>
+        </type>
+        <id>lbdInsulin</id>
+      </var>
+      <var id="id125">
+        <type>
+          <id>lambdaSugar</id>
+        </type>
+        <id>lbdSugar</id>
+      </var>
+      <var id="id126">
+        <type>
+          <id>lAspartame</id>
+        </type>
+        <id>levelAspartame</id>
+      </var>
+      <var id="id127">
+        <type>
+          <id>lGlucagon</id>
+        </type>
+        <id>levelGlucagon</id>
+      </var>
+      <var id="id128">
+        <type>
+          <id>lGlycemia</id>
+        </type>
+        <id>levelGlycemia</id>
+      </var>
+      <var id="id129">
+        <type>
+          <id>lInsulin</id>
+        </type>
+        <id>levelInsulin</id>
+      </var>
+      <var id="id130">
+        <type>
+          <id>lSugar</id>
+        </type>
+        <id>levelSugar</id>
+      </var>
+      <var id="id131">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha0</id>
+      </var>
+      <var id="id132">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha1</id>
+      </var>
+      <var id="id133">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha2</id>
+      </var>
+      <var id="id134">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha3</id>
+      </var>
+      <var id="id135">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha4</id>
+      </var>
+      <var id="id136">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha5</id>
+      </var>
+      <var id="id137">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha6</id>
+      </var>
+      <var id="id138">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptalpha7</id>
+      </var>
+      <var id="id139">
+        <type>
+          <id>D</id>
+        </type>
+        <id>ptbeta0</id>
+      </var>
+      <var id="id140">
+        <type>
+          <id>uAspartame</id>
+        </type>
+        <id>timerAspartame</id>
+      </var>
+      <var id="id141">
+        <type>
+          <id>uGlucagon</id>
+        </type>
+        <id>timerGlucagon</id>
+      </var>
+      <var id="id142">
+        <type>
+          <id>uGlycemia</id>
+        </type>
+        <id>timerGlycemia</id>
+      </var>
+      <var id="id143">
+        <type>
+          <id>uInsulin</id>
+        </type>
+        <id>timerInsulin</id>
+      </var>
+      <var id="id144">
+        <type>
+          <id>uSugar</id>
+        </type>
+        <id>timerSugar</id>
+      </var>
+    </globbox>
+    <page id="id1">
+      <pageattr name="Top"/>
+      <trans id="id145">
+        <posattr x="205.384615" y="-262.307692"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha0</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id146">
+          <posattr x="305.384615" y="-217.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelSugar &gt;= 1  andalso  lbdSugar:2 &gt;= 1  andalso  ptalpha0&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id147">
+        <posattr x="15.000000" y="-731.153846"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha1</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id148">
+          <posattr x="115.000000" y="-686.153846"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelAspartame &gt;= 1  andalso  lbdAspartame:2 &gt;= 1  andalso  ptalpha1&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id149">
+        <posattr x="339.038462" y="-378.846154"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha2</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id150">
+          <posattr x="439.038462" y="-333.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelGlycemia &lt; 1  andalso  lbdGlycemia:2 &gt;= 1  andalso  ptalpha2&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id151">
+        <posattr x="297.692308" y="-90.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha3</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id152">
+          <posattr x="397.692308" y="-45.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelGlycemia &gt;= 3  andalso  lbdGlycemia:4 &gt;= 1  andalso  ptalpha3&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id153">
+        <posattr x="500.192308" y="-262.307692"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha4</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id154">
+          <posattr x="600.192308" y="-217.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelInsulin &gt;= 2  andalso  lbdInsulin:3 &gt;= 1  andalso  ptalpha4&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id155">
+        <posattr x="290.576923" y="-340.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha5</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id156">
+          <posattr x="390.576923" y="-295.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelInsulin &gt;= 1  andalso  lbdInsulin:2 &gt;= 1  andalso  levelGlycemia &gt;= 3  andalso  lbdGlycemia:4 &gt;= 1  andalso  ptalpha5&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id157">
+        <posattr x="327.692308" y="-140.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha6</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id158">
+          <posattr x="427.692308" y="-95.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelInsulin &gt;= 1  andalso  lbdInsulin:2 &gt;= 1  andalso  levelGlycemia &lt; 2  andalso  lbdGlycemia:3 &gt;= 1  andalso  ptalpha6&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id159">
+        <posattr x="380.192308" y="-460.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>talpha7</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id160">
+          <posattr x="480.192308" y="-415.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">levelGlucagon &gt;= 1  andalso  lbdGlucagon:2 &gt;= 1  andalso  ptalpha7&gt;=1</text>
+        </cond>
+      </trans>
+      <trans id="id161">
+        <posattr x="139.230769" y="-660.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>tbeta</text>
+        <box w="60.000000" h="40.000000"/>
+        <cond id="id162">
+          <posattr x="239.230769" y="-615.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Black" thick="0" type="solid"/>
+          <textattr colour="Black" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0"></text>
+        </cond>
+      </trans>
+      <place id="id163">
+        <posattr x="245.384615" y="-262.307692"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>Sugar</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id164">
+          <posattr x="220.384615" y="-222.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">Sugar</text>
+        </type>
+        <initmark id="id165">
+          <posattr x="254.384615" y="-223.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`(0,0,(0,0))++0`(0,0,(0,1))++0`(0,0,(1,0))++0`(0,0,(1,1))++0`(0,1,(0,0))++0`(0,1,(0,1))++0`(0,1,(1,0))++0`(0,1,(1,1))++0`(0,2,(0,0))++0`(0,2,(0,1))++0`(0,2,(1,0))++0`(0,2,(1,1))++0`(1,0,(0,0))++0`(1,0,(0,1))++0`(1,0,(1,0))++0`(1,0,(1,1))++0`(1,1,(0,0))++0`(1,1,(0,1))++0`(1,1,(1,0))++0`(1,1,(1,1))++0`(1,2,(0,0))++0`(1,2,(0,1))++0`(1,2,(1,0))++0`(1,2,(1,1))</text>
+        </initmark>
+      </place>
+      <place id="id166">
+        <posattr x="204.615385" y="-740.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>Aspartame</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id167">
+          <posattr x="179.615385" y="-700.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">Aspartame</text>
+        </type>
+        <initmark id="id168">
+          <posattr x="213.615385" y="-701.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`(0,0,(0,0))++0`(0,0,(0,1))++0`(0,0,(1,0))++0`(0,0,(1,1))++0`(0,1,(0,0))++0`(0,1,(0,1))++0`(0,1,(1,0))++0`(0,1,(1,1))++0`(0,2,(0,0))++0`(0,2,(0,1))++0`(0,2,(1,0))++0`(0,2,(1,1))++0`(1,0,(0,0))++0`(1,0,(0,1))++0`(1,0,(1,0))++0`(1,0,(1,1))++0`(1,1,(0,0))++0`(1,1,(0,1))++0`(1,1,(1,0))++0`(1,1,(1,1))++0`(1,2,(0,0))++0`(1,2,(0,1))++0`(1,2,(1,0))++0`(1,2,(1,1))</text>
+        </initmark>
+      </place>
+      <place id="id169">
+        <posattr x="385.384615" y="-260.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>Glycemia</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id170">
+          <posattr x="360.384615" y="-220.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">Glycemia</text>
+        </type>
+        <initmark id="id171">
+          <posattr x="394.384615" y="-221.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">0`(0,0,(0,0,0,0))++0`(0,0,(0,0,0,1))++0`(0,0,(0,0,1,0))++0`(0,0,(0,0,1,1))++0`(0,0,(0,1,0,0))++0`(0,0,(0,1,0,1))++0`(0,0,(0,1,1,0))++0`(0,0,(0,1,1,1))++0`(0,0,(1,0,0,0))++0`(0,0,(1,0,0,1))++0`(0,0,(1,0,1,0))++0`(0,0,(1,0,1,1))++0`(0,0,(1,1,0,0))++0`(0,0,(1,1,0,1))++0`(0,0,(1,1,1,0))++0`(0,0,(1,1,1,1))++0`(0,1,(0,0,0,0))++0`(0,1,(0,0,0,1))++0`(0,1,(0,0,1,0))++0`(0,1,(0,0,1,1))++0`(0,1,(0,1,0,0))++0`(0,1,(0,1,0,1))++0`(0,1,(0,1,1,0))++0`(0,1,(0,1,1,1))++0`(0,1,(1,0,0,0))++0`(0,1,(1,0,0,1))++0`(0,1,(1,0,1,0))++0`(0,1,(1,0,1,1))++0`(0,1,(1,1,0,0))++0`(0,1,(1,1,0,1))++0`(0,1,(1,1,1,0))++0`(0,1,(1,1,1,1))++0`(0,2,(0,0,0,0))++0`(0,2,(0,0,0,1))++0`(0,2,(0,0,1,0))++0`(0,2,(0,0,1,1))++0`(0,2,(0,1,0,0))++0`(0,2,(0,1,0,1))++0`(0,2,(0,1,1,0))++0`(0,2,(0,1,1,1))++0`(0,2,(1,0,0,0))++0`(0,2,(1,0,0,1))++0`(0,2,(1,0,1,0))++0`(0,2,(1,0,1,1))++0`(0,2,(1,1,0,0))++0`(0,2,(1,1,0,1))++0`(0,2,(1,1,1,0))++0`(0,2,(1,1,1,1))++0`(0,3,(0,0,0,0))++0`(0,3,(0,0,0,1))++0`(0,3,(0,0,1,0))++0`(0,3,(0,0,1,1))++0`(0,3,(0,1,0,0))++0`(0,3,(0,1,0,1))++0`(0,3,(0,1,1,0))++0`(0,3,(0,1,1,1))++0`(0,3,(1,0,0,0))++0`(0,3,(1,0,0,1))++0`(0,3,(1,0,1,0))++0`(0,3,(1,0,1,1))++0`(0,3,(1,1,0,0))++0`(0,3,(1,1,0,1))++0`(0,3,(1,1,1,0))++0`(0,3,(1,1,1,1))++0`(0,4,(0,0,0,0))++0`(0,4,(0,0,0,1))++0`(0,4,(0,0,1,0))++0`(0,4,(0,0,1,1))++0`(0,4,(0,1,0,0))++0`(0,4,(0,1,0,1))++0`(0,4,(0,1,1,0))++0`(0,4,(0,1,1,1))++0`(0,4,(1,0,0,0))++0`(0,4,(1,0,0,1))++0`(0,4,(1,0,1,0))++0`(0,4,(1,0,1,1))++0`(0,4,(1,1,0,0))++0`(0,4,(1,1,0,1))++0`(0,4,(1,1,1,0))++0`(0,4,(1,1,1,1))++0`(0,5,(0,0,0,0))++0`(0,5,(0,0,0,1))++0`(0,5,(0,0,1,0))++0`(0,5,(0,0,1,1))++0`(0,5,(0,1,0,0))++0`(0,5,(0,1,0,1))++0`(0,5,(0,1,1,0))++0`(0,5,(0,1,1,1))++0`(0,5,(1,0,0,0))++0`(0,5,(1,0,0,1))++0`(0,5,(1,0,1,0))++0`(0,5,(1,0,1,1))++0`(0,5,(1,1,0,0))++0`(0,5,(1,1,0,1))++0`(0,5,(1,1,1,0))++0`(0,5,(1,1,1,1))++0`(0,6,(0,0,0,0))++0`(0,6,(0,0,0,1))++0`(0,6,(0,0,1,0))++0`(0,6,(0,0,1,1))++0`(0,6,(0,1,0,0))++0`(0,6,(0,1,0,1))++0`(0,6,(0,1,1,0))++0`(0,6,(0,1,1,1))++0`(0,6,(1,0,0,0))++0`(0,6,(1,0,0,1))++0`(0,6,(1,0,1,0))++0`(0,6,(1,0,1,1))++0`(0,6,(1,1,0,0))++0`(0,6,(1,1,0,1))++0`(0,6,(1,1,1,0))++0`(0,6,(1,1,1,1))++0`(0,7,(0,0,0,0))++0`(0,7,(0,0,0,1))++0`(0,7,(0,0,1,0))++0`(0,7,(0,0,1,1))++0`(0,7,(0,1,0,0))++0`(0,7,(0,1,0,1))++0`(0,7,(0,1,1,0))++0`(0,7,(0,1,1,1))++0`(0,7,(1,0,0,0))++0`(0,7,(1,0,0,1))++0`(0,7,(1,0,1,0))++0`(0,7,(1,0,1,1))++0`(0,7,(1,1,0,0))++0`(0,7,(1,1,0,1))++0`(0,7,(1,1,1,0))++0`(0,7,(1,1,1,1))++0`(0,8,(0,0,0,0))++0`(0,8,(0,0,0,1))++0`(0,8,(0,0,1,0))++0`(0,8,(0,0,1,1))++0`(0,8,(0,1,0,0))++0`(0,8,(0,1,0,1))++0`(0,8,(0,1,1,0))++0`(0,8,(0,1,1,1))++0`(0,8,(1,0,0,0))++0`(0,8,(1,0,0,1))++0`(0,8,(1,0,1,0))++0`(0,8,(1,0,1,1))++0`(0,8,(1,1,0,0))++0`(0,8,(1,1,0,1))++0`(0,8,(1,1,1,0))++0`(0,8,(1,1,1,1))++0`(1,0,(0,0,0,0))++0`(1,0,(0,0,0,1))++0`(1,0,(0,0,1,0))++0`(1,0,(0,0,1,1))++0`(1,0,(0,1,0,0))++0`(1,0,(0,1,0,1))++0`(1,0,(0,1,1,0))++0`(1,0,(0,1,1,1))++0`(1,0,(1,0,0,0))++0`(1,0,(1,0,0,1))++0`(1,0,(1,0,1,0))++0`(1,0,(1,0,1,1))++0`(1,0,(1,1,0,0))++0`(1,0,(1,1,0,1))++0`(1,0,(1,1,1,0))++0`(1,0,(1,1,1,1))++0`(1,1,(0,0,0,0))++0`(1,1,(0,0,0,1))++0`(1,1,(0,0,1,0))++0`(1,1,(0,0,1,1))++0`(1,1,(0,1,0,0))++0`(1,1,(0,1,0,1))++0`(1,1,(0,1,1,0))++0`(1,1,(0,1,1,1))++0`(1,1,(1,0,0,0))++0`(1,1,(1,0,0,1))++0`(1,1,(1,0,1,0))++0`(1,1,(1,0,1,1))++0`(1,1,(1,1,0,0))++0`(1,1,(1,1,0,1))++0`(1,1,(1,1,1,0))++0`(1,1,(1,1,1,1))++0`(1,2,(0,0,0,0))++0`(1,2,(0,0,0,1))++0`(1,2,(0,0,1,0))++0`(1,2,(0,0,1,1))++0`(1,2,(0,1,0,0))++0`(1,2,(0,1,0,1))++0`(1,2,(0,1,1,0))++0`(1,2,(0,1,1,1))++0`(1,2,(1,0,0,0))++0`(1,2,(1,0,0,1))++0`(1,2,(1,0,1,0))++0`(1,2,(1,0,1,1))++0`(1,2,(1,1,0,0))++0`(1,2,(1,1,0,1))++0`(1,2,(1,1,1,0))++0`(1,2,(1,1,1,1))++0`(1,3,(0,0,0,0))++0`(1,3,(0,0,0,1))++0`(1,3,(0,0,1,0))++0`(1,3,(0,0,1,1))++0`(1,3,(0,1,0,0))++0`(1,3,(0,1,0,1))++0`(1,3,(0,1,1,0))++0`(1,3,(0,1,1,1))++0`(1,3,(1,0,0,0))++0`(1,3,(1,0,0,1))++0`(1,3,(1,0,1,0))++0`(1,3,(1,0,1,1))++0`(1,3,(1,1,0,0))++0`(1,3,(1,1,0,1))++0`(1,3,(1,1,1,0))++0`(1,3,(1,1,1,1))++0`(1,4,(0,0,0,0))++0`(1,4,(0,0,0,1))++0`(1,4,(0,0,1,0))++0`(1,4,(0,0,1,1))++0`(1,4,(0,1,0,0))++0`(1,4,(0,1,0,1))++0`(1,4,(0,1,1,0))++0`(1,4,(0,1,1,1))++0`(1,4,(1,0,0,0))++0`(1,4,(1,0,0,1))++0`(1,4,(1,0,1,0))++0`(1,4,(1,0,1,1))++0`(1,4,(1,1,0,0))++0`(1,4,(1,1,0,1))++0`(1,4,(1,1,1,0))++0`(1,4,(1,1,1,1))++0`(1,5,(0,0,0,0))++0`(1,5,(0,0,0,1))++0`(1,5,(0,0,1,0))++0`(1,5,(0,0,1,1))++0`(1,5,(0,1,0,0))++0`(1,5,(0,1,0,1))++0`(1,5,(0,1,1,0))++0`(1,5,(0,1,1,1))++0`(1,5,(1,0,0,0))++0`(1,5,(1,0,0,1))++0`(1,5,(1,0,1,0))++0`(1,5,(1,0,1,1))++0`(1,5,(1,1,0,0))++0`(1,5,(1,1,0,1))++0`(1,5,(1,1,1,0))++0`(1,5,(1,1,1,1))++0`(1,6,(0,0,0,0))++0`(1,6,(0,0,0,1))++0`(1,6,(0,0,1,0))++0`(1,6,(0,0,1,1))++0`(1,6,(0,1,0,0))++0`(1,6,(0,1,0,1))++0`(1,6,(0,1,1,0))++0`(1,6,(0,1,1,1))++0`(1,6,(1,0,0,0))++0`(1,6,(1,0,0,1))++0`(1,6,(1,0,1,0))++0`(1,6,(1,0,1,1))++0`(1,6,(1,1,0,0))++0`(1,6,(1,1,0,1))++0`(1,6,(1,1,1,0))++0`(1,6,(1,1,1,1))++0`(1,7,(0,0,0,0))++0`(1,7,(0,0,0,1))++0`(1,7,(0,0,1,0))++0`(1,7,(0,0,1,1))++0`(1,7,(0,1,0,0))++0`(1,7,(0,1,0,1))++0`(1,7,(0,1,1,0))++0`(1,7,(0,1,1,1))++0`(1,7,(1,0,0,0))++0`(1,7,(1,0,0,1))++0`(1,7,(1,0,1,0))++0`(1,7,(1,0,1,1))++0`(1,7,(1,1,0,0))++0`(1,7,(1,1,0,1))++0`(1,7,(1,1,1,0))++0`(1,7,(1,1,1,1))++0`(1,8,(0,0,0,0))++0`(1,8,(0,0,0,1))++0`(1,8,(0,0,1,0))++0`(1,8,(0,0,1,1))++0`(1,8,(0,1,0,0))++0`(1,8,(0,1,0,1))++0`(1,8,(0,1,1,0))++0`(1,8,(0,1,1,1))++0`(1,8,(1,0,0,0))++0`(1,8,(1,0,0,1))++0`(1,8,(1,0,1,0))++0`(1,8,(1,0,1,1))++0`(1,8,(1,1,0,0))++0`(1,8,(1,1,0,1))++0`(1,8,(1,1,1,0))++0`(1,8,(1,1,1,1))++0`(2,0,(0,0,0,0))++0`(2,0,(0,0,0,1))++0`(2,0,(0,0,1,0))++0`(2,0,(0,0,1,1))++0`(2,0,(0,1,0,0))++0`(2,0,(0,1,0,1))++0`(2,0,(0,1,1,0))++0`(2,0,(0,1,1,1))++0`(2,0,(1,0,0,0))++0`(2,0,(1,0,0,1))++0`(2,0,(1,0,1,0))++0`(2,0,(1,0,1,1))++0`(2,0,(1,1,0,0))++0`(2,0,(1,1,0,1))++0`(2,0,(1,1,1,0))++0`(2,0,(1,1,1,1))++0`(2,1,(0,0,0,0))++0`(2,1,(0,0,0,1))++0`(2,1,(0,0,1,0))++0`(2,1,(0,0,1,1))++0`(2,1,(0,1,0,0))++0`(2,1,(0,1,0,1))++0`(2,1,(0,1,1,0))++0`(2,1,(0,1,1,1))++0`(2,1,(1,0,0,0))++0`(2,1,(1,0,0,1))++0`(2,1,(1,0,1,0))++0`(2,1,(1,0,1,1))++0`(2,1,(1,1,0,0))++0`(2,1,(1,1,0,1))++0`(2,1,(1,1,1,0))++0`(2,1,(1,1,1,1))++0`(2,2,(0,0,0,0))++0`(2,2,(0,0,0,1))++0`(2,2,(0,0,1,0))++0`(2,2,(0,0,1,1))++0`(2,2,(0,1,0,0))++0`(2,2,(0,1,0,1))++0`(2,2,(0,1,1,0))++0`(2,2,(0,1,1,1))++0`(2,2,(1,0,0,0))++0`(2,2,(1,0,0,1))++0`(2,2,(1,0,1,0))++0`(2,2,(1,0,1,1))++0`(2,2,(1,1,0,0))++0`(2,2,(1,1,0,1))++0`(2,2,(1,1,1,0))++0`(2,2,(1,1,1,1))++0`(2,3,(0,0,0,0))++0`(2,3,(0,0,0,1))++0`(2,3,(0,0,1,0))++0`(2,3,(0,0,1,1))++0`(2,3,(0,1,0,0))++0`(2,3,(0,1,0,1))++0`(2,3,(0,1,1,0))++0`(2,3,(0,1,1,1))++0`(2,3,(1,0,0,0))++0`(2,3,(1,0,0,1))++0`(2,3,(1,0,1,0))++0`(2,3,(1,0,1,1))++0`(2,3,(1,1,0,0))++0`(2,3,(1,1,0,1))++0`(2,3,(1,1,1,0))++0`(2,3,(1,1,1,1))++0`(2,4,(0,0,0,0))++0`(2,4,(0,0,0,1))++0`(2,4,(0,0,1,0))++0`(2,4,(0,0,1,1))++0`(2,4,(0,1,0,0))++0`(2,4,(0,1,0,1))++0`(2,4,(0,1,1,0))++0`(2,4,(0,1,1,1))++0`(2,4,(1,0,0,0))++0`(2,4,(1,0,0,1))++0`(2,4,(1,0,1,0))++0`(2,4,(1,0,1,1))++0`(2,4,(1,1,0,0))++0`(2,4,(1,1,0,1))++0`(2,4,(1,1,1,0))++0`(2,4,(1,1,1,1))++0`(2,5,(0,0,0,0))++0`(2,5,(0,0,0,1))++0`(2,5,(0,0,1,0))++0`(2,5,(0,0,1,1))++0`(2,5,(0,1,0,0))++0`(2,5,(0,1,0,1))++0`(2,5,(0,1,1,0))++0`(2,5,(0,1,1,1))++0`(2,5,(1,0,0,0))++0`(2,5,(1,0,0,1))++0`(2,5,(1,0,1,0))++0`(2,5,(1,0,1,1))++0`(2,5,(1,1,0,0))++0`(2,5,(1,1,0,1))++0`(2,5,(1,1,1,0))++0`(2,5,(1,1,1,1))++0`(2,6,(0,0,0,0))++0`(2,6,(0,0,0,1))++0`(2,6,(0,0,1,0))++0`(2,6,(0,0,1,1))++0`(2,6,(0,1,0,0))++0`(2,6,(0,1,0,1))++0`(2,6,(0,1,1,0))++0`(2,6,(0,1,1,1))++0`(2,6,(1,0,0,0))++0`(2,6,(1,0,0,1))++0`(2,6,(1,0,1,0))++0`(2,6,(1,0,1,1))++0`(2,6,(1,1,0,0))++0`(2,6,(1,1,0,1))++0`(2,6,(1,1,1,0))++0`(2,6,(1,1,1,1))++0`(2,7,(0,0,0,0))++0`(2,7,(0,0,0,1))++0`(2,7,(0,0,1,0))++0`(2,7,(0,0,1,1))++0`(2,7,(0,1,0,0))++0`(2,7,(0,1,0,1))++0`(2,7,(0,1,1,0))++0`(2,7,(0,1,1,1))++0`(2,7,(1,0,0,0))++0`(2,7,(1,0,0,1))++0`(2,7,(1,0,1,0))++0`(2,7,(1,0,1,1))++0`(2,7,(1,1,0,0))++0`(2,7,(1,1,0,1))++0`(2,7,(1,1,1,0))++0`(2,7,(1,1,1,1))++0`(2,8,(0,0,0,0))++0`(2,8,(0,0,0,1))++0`(2,8,(0,0,1,0))++0`(2,8,(0,0,1,1))++0`(2,8,(0,1,0,0))++0`(2,8,(0,1,0,1))++0`(2,8,(0,1,1,0))++0`(2,8,(0,1,1,1))++0`(2,8,(1,0,0,0))++0`(2,8,(1,0,0,1))++0`(2,8,(1,0,1,0))++0`(2,8,(1,0,1,1))++0`(2,8,(1,1,0,0))++0`(2,8,(1,1,0,1))++0`(2,8,(1,1,1,0))++0`(2,8,(1,1,1,1))++1`(3,0,(0,0,0,0))++0`(3,0,(0,0,0,1))++0`(3,0,(0,0,1,0))++0`(3,0,(0,0,1,1))++0`(3,0,(0,1,0,0))++0`(3,0,(0,1,0,1))++0`(3,0,(0,1,1,0))++0`(3,0,(0,1,1,1))++0`(3,0,(1,0,0,0))++0`(3,0,(1,0,0,1))++0`(3,0,(1,0,1,0))++0`(3,0,(1,0,1,1))++0`(3,0,(1,1,0,0))++0`(3,0,(1,1,0,1))++0`(3,0,(1,1,1,0))++0`(3,0,(1,1,1,1))++0`(3,1,(0,0,0,0))++0`(3,1,(0,0,0,1))++0`(3,1,(0,0,1,0))++0`(3,1,(0,0,1,1))++0`(3,1,(0,1,0,0))++0`(3,1,(0,1,0,1))++0`(3,1,(0,1,1,0))++0`(3,1,(0,1,1,1))++0`(3,1,(1,0,0,0))++0`(3,1,(1,0,0,1))++0`(3,1,(1,0,1,0))++0`(3,1,(1,0,1,1))++0`(3,1,(1,1,0,0))++0`(3,1,(1,1,0,1))++0`(3,1,(1,1,1,0))++0`(3,1,(1,1,1,1))++0`(3,2,(0,0,0,0))++0`(3,2,(0,0,0,1))++0`(3,2,(0,0,1,0))++0`(3,2,(0,0,1,1))++0`(3,2,(0,1,0,0))++0`(3,2,(0,1,0,1))++0`(3,2,(0,1,1,0))++0`(3,2,(0,1,1,1))++0`(3,2,(1,0,0,0))++0`(3,2,(1,0,0,1))++0`(3,2,(1,0,1,0))++0`(3,2,(1,0,1,1))++0`(3,2,(1,1,0,0))++0`(3,2,(1,1,0,1))++0`(3,2,(1,1,1,0))++0`(3,2,(1,1,1,1))++0`(3,3,(0,0,0,0))++0`(3,3,(0,0,0,1))++0`(3,3,(0,0,1,0))++0`(3,3,(0,0,1,1))++0`(3,3,(0,1,0,0))++0`(3,3,(0,1,0,1))++0`(3,3,(0,1,1,0))++0`(3,3,(0,1,1,1))++0`(3,3,(1,0,0,0))++0`(3,3,(1,0,0,1))++0`(3,3,(1,0,1,0))++0`(3,3,(1,0,1,1))++0`(3,3,(1,1,0,0))++0`(3,3,(1,1,0,1))++0`(3,3,(1,1,1,0))++0`(3,3,(1,1,1,1))++0`(3,4,(0,0,0,0))++0`(3,4,(0,0,0,1))++0`(3,4,(0,0,1,0))++0`(3,4,(0,0,1,1))++0`(3,4,(0,1,0,0))++0`(3,4,(0,1,0,1))++0`(3,4,(0,1,1,0))++0`(3,4,(0,1,1,1))++0`(3,4,(1,0,0,0))++0`(3,4,(1,0,0,1))++0`(3,4,(1,0,1,0))++0`(3,4,(1,0,1,1))++0`(3,4,(1,1,0,0))++0`(3,4,(1,1,0,1))++0`(3,4,(1,1,1,0))++0`(3,4,(1,1,1,1))++0`(3,5,(0,0,0,0))++0`(3,5,(0,0,0,1))++0`(3,5,(0,0,1,0))++0`(3,5,(0,0,1,1))++0`(3,5,(0,1,0,0))++0`(3,5,(0,1,0,1))++0`(3,5,(0,1,1,0))++0`(3,5,(0,1,1,1))++0`(3,5,(1,0,0,0))++0`(3,5,(1,0,0,1))++0`(3,5,(1,0,1,0))++0`(3,5,(1,0,1,1))++0`(3,5,(1,1,0,0))++0`(3,5,(1,1,0,1))++0`(3,5,(1,1,1,0))++0`(3,5,(1,1,1,1))++0`(3,6,(0,0,0,0))++0`(3,6,(0,0,0,1))++0`(3,6,(0,0,1,0))++0`(3,6,(0,0,1,1))++0`(3,6,(0,1,0,0))++0`(3,6,(0,1,0,1))++0`(3,6,(0,1,1,0))++0`(3,6,(0,1,1,1))++0`(3,6,(1,0,0,0))++0`(3,6,(1,0,0,1))++0`(3,6,(1,0,1,0))++0`(3,6,(1,0,1,1))++0`(3,6,(1,1,0,0))++0`(3,6,(1,1,0,1))++0`(3,6,(1,1,1,0))++0`(3,6,(1,1,1,1))++0`(3,7,(0,0,0,0))++0`(3,7,(0,0,0,1))++0`(3,7,(0,0,1,0))++0`(3,7,(0,0,1,1))++0`(3,7,(0,1,0,0))++0`(3,7,(0,1,0,1))++0`(3,7,(0,1,1,0))++0`(3,7,(0,1,1,1))++0`(3,7,(1,0,0,0))++0`(3,7,(1,0,0,1))++0`(3,7,(1,0,1,0))++0`(3,7,(1,0,1,1))++0`(3,7,(1,1,0,0))++0`(3,7,(1,1,0,1))++0`(3,7,(1,1,1,0))++0`(3,7,(1,1,1,1))++0`(3,8,(0,0,0,0))++0`(3,8,(0,0,0,1))++0`(3,8,(0,0,1,0))++0`(3,8,(0,0,1,1))++0`(3,8,(0,1,0,0))++0`(3,8,(0,1,0,1))++0`(3,8,(0,1,1,0))++0`(3,8,(0,1,1,1))++0`(3,8,(1,0,0,0))++0`(3,8,(1,0,0,1))++0`(3,8,(1,0,1,0))++0`(3,8,(1,0,1,1))++0`(3,8,(1,1,0,0))++0`(3,8,(1,1,0,1))++0`(3,8,(1,1,1,0))++0`(3,8,(1,1,1,1))</text>
+        </initmark>
+      </place>
+      <place id="id172">
+        <posattr x="420.192308" y="-438.846154"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>Glucagon</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id173">
+          <posattr x="395.192308" y="-398.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">Glucagon</text>
+        </type>
+        <initmark id="id174">
+          <posattr x="429.192308" y="-399.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`(0,0,(0,0))++0`(0,0,(0,1))++0`(0,0,(1,0))++0`(0,0,(1,1))++0`(0,1,(0,0))++0`(0,1,(0,1))++0`(0,1,(1,0))++0`(0,1,(1,1))++0`(0,2,(0,0))++0`(0,2,(0,1))++0`(0,2,(1,0))++0`(0,2,(1,1))++0`(0,3,(0,0))++0`(0,3,(0,1))++0`(0,3,(1,0))++0`(0,3,(1,1))++0`(1,0,(0,0))++0`(1,0,(0,1))++0`(1,0,(1,0))++0`(1,0,(1,1))++0`(1,1,(0,0))++0`(1,1,(0,1))++0`(1,1,(1,0))++0`(1,1,(1,1))++0`(1,2,(0,0))++0`(1,2,(0,1))++0`(1,2,(1,0))++0`(1,2,(1,1))++0`(1,3,(0,0))++0`(1,3,(0,1))++0`(1,3,(1,0))++0`(1,3,(1,1))</text>
+        </initmark>
+      </place>
+      <place id="id175">
+        <posattr x="95.000000" y="-198.846154"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>Insulin</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id176">
+          <posattr x="70.000000" y="-158.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">Insulin</text>
+        </type>
+        <initmark id="id177">
+          <posattr x="104.000000" y="-159.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">0`(0,0,(0,0,0))++0`(0,0,(0,0,1))++0`(0,0,(0,1,0))++0`(0,0,(0,1,1))++0`(0,0,(1,0,0))++0`(0,0,(1,0,1))++0`(0,0,(1,1,0))++0`(0,0,(1,1,1))++0`(0,1,(0,0,0))++0`(0,1,(0,0,1))++0`(0,1,(0,1,0))++0`(0,1,(0,1,1))++0`(0,1,(1,0,0))++0`(0,1,(1,0,1))++0`(0,1,(1,1,0))++0`(0,1,(1,1,1))++0`(0,2,(0,0,0))++0`(0,2,(0,0,1))++0`(0,2,(0,1,0))++0`(0,2,(0,1,1))++0`(0,2,(1,0,0))++0`(0,2,(1,0,1))++0`(0,2,(1,1,0))++0`(0,2,(1,1,1))++0`(0,3,(0,0,0))++0`(0,3,(0,0,1))++0`(0,3,(0,1,0))++0`(0,3,(0,1,1))++0`(0,3,(1,0,0))++0`(0,3,(1,0,1))++0`(0,3,(1,1,0))++0`(0,3,(1,1,1))++0`(1,0,(0,0,0))++0`(1,0,(0,0,1))++0`(1,0,(0,1,0))++0`(1,0,(0,1,1))++0`(1,0,(1,0,0))++0`(1,0,(1,0,1))++0`(1,0,(1,1,0))++0`(1,0,(1,1,1))++0`(1,1,(0,0,0))++0`(1,1,(0,0,1))++0`(1,1,(0,1,0))++0`(1,1,(0,1,1))++0`(1,1,(1,0,0))++0`(1,1,(1,0,1))++0`(1,1,(1,1,0))++0`(1,1,(1,1,1))++0`(1,2,(0,0,0))++0`(1,2,(0,0,1))++0`(1,2,(0,1,0))++0`(1,2,(0,1,1))++0`(1,2,(1,0,0))++0`(1,2,(1,0,1))++0`(1,2,(1,1,0))++0`(1,2,(1,1,1))++0`(1,3,(0,0,0))++0`(1,3,(0,0,1))++0`(1,3,(0,1,0))++0`(1,3,(0,1,1))++0`(1,3,(1,0,0))++0`(1,3,(1,0,1))++0`(1,3,(1,1,0))++0`(1,3,(1,1,1))++1`(2,0,(0,0,0))++0`(2,0,(0,0,1))++0`(2,0,(0,1,0))++0`(2,0,(0,1,1))++0`(2,0,(1,0,0))++0`(2,0,(1,0,1))++0`(2,0,(1,1,0))++0`(2,0,(1,1,1))++0`(2,1,(0,0,0))++0`(2,1,(0,0,1))++0`(2,1,(0,1,0))++0`(2,1,(0,1,1))++0`(2,1,(1,0,0))++0`(2,1,(1,0,1))++0`(2,1,(1,1,0))++0`(2,1,(1,1,1))++0`(2,2,(0,0,0))++0`(2,2,(0,0,1))++0`(2,2,(0,1,0))++0`(2,2,(0,1,1))++0`(2,2,(1,0,0))++0`(2,2,(1,0,1))++0`(2,2,(1,1,0))++0`(2,2,(1,1,1))++0`(2,3,(0,0,0))++0`(2,3,(0,0,1))++0`(2,3,(0,1,0))++0`(2,3,(0,1,1))++0`(2,3,(1,0,0))++0`(2,3,(1,0,1))++0`(2,3,(1,1,0))++0`(2,3,(1,1,1))</text>
+        </initmark>
+      </place>
+      <place id="id178">
+        <posattr x="270.769231" y="-380.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha0</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id179">
+          <posattr x="245.769231" y="-340.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id180">
+          <posattr x="279.769231" y="-341.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id181">
+        <posattr x="139.230769" y="-674.615385"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha1</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id182">
+          <posattr x="114.230769" y="-634.615385"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id183">
+          <posattr x="148.230769" y="-635.615385"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id184">
+        <posattr x="380.192308" y="-460.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha2</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id185">
+          <posattr x="355.192308" y="-420.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id186">
+          <posattr x="389.192308" y="-421.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id187">
+        <posattr x="722.500000" y="-98.846154"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha3</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id188">
+          <posattr x="697.500000" y="-58.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id189">
+          <posattr x="731.500000" y="-59.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id190">
+        <posattr x="660.192308" y="-276.923077"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha4</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id191">
+          <posattr x="635.192308" y="-236.923077"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id192">
+          <posattr x="669.192308" y="-237.923077"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id193">
+        <posattr x="355.961538" y="-420.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha5</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id194">
+          <posattr x="330.961538" y="-380.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id195">
+          <posattr x="364.961538" y="-381.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id196">
+        <posattr x="685.576923" y="-148.846154"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha6</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id197">
+          <posattr x="660.576923" y="-108.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id198">
+          <posattr x="694.576923" y="-109.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <place id="id199">
+        <posattr x="445.576923" y="-540.000000"/>
+        <fillattr colour="White" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="1" type="solid"/>
+        <textattr colour="Navy" bold="false"/>
+        <text>palpha7</text>
+        <ellipse w="60" h="40"/>
+        <token x="-10.000000" y="0.000000"/>
+        <marking x="-1.413428" y="4.9"/>
+        <type id="id200">
+          <posattr x="420.576923" y="-500.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">D</text>
+        </type>
+        <initmark id="id201">
+          <posattr x="454.576923" y="-501.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="1" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text tool="CPN Tools" version="2.2.0">1`0++0`1</text>
+        </initmark>
+      </place>
+      <arc id="id202" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id178"/>
+        <annot id="id203">
+          <posattr x="254.615385" y="-301.153846"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha0</text>
+        </annot>
+      </arc>
+      <arc id="id204" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id178"/>
+        <annot id="id205">
+          <posattr x="251.538462" y="-301.153846"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id206" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id178"/>
+        <annot id="id207">
+          <posattr x="215.096154" y="-390.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha0</text>
+        </annot>
+      </arc>
+      <arc id="id208" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id178"/>
+        <annot id="id209">
+          <posattr x="217.115385" y="-410.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha0+1+1)/2-abs(ptalpha0+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id210" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id147"/>
+        <placeend idref="id181"/>
+        <annot id="id211">
+          <posattr x="84.230769" y="-660.384615"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha1</text>
+        </annot>
+      </arc>
+      <arc id="id212" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id147"/>
+        <placeend idref="id181"/>
+        <annot id="id213">
+          <posattr x="70.000000" y="-682.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id214" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id181"/>
+        <annot id="id215">
+          <posattr x="154.230769" y="-648.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha1</text>
+        </annot>
+      </arc>
+      <arc id="id216" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id181"/>
+        <annot id="id217">
+          <posattr x="154.230769" y="-645.769231"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha1+1+1)/2-abs(ptalpha1+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id218" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id149"/>
+        <placeend idref="id184"/>
+        <annot id="id219">
+          <posattr x="364.038462" y="-398.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha2</text>
+        </annot>
+      </arc>
+      <arc id="id220" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id149"/>
+        <placeend idref="id184"/>
+        <annot id="id221">
+          <posattr x="372.500000" y="-364.615385"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id222" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id184"/>
+        <annot id="id223">
+          <posattr x="271.730769" y="-470.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha2</text>
+        </annot>
+      </arc>
+      <arc id="id224" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id184"/>
+        <annot id="id225">
+          <posattr x="273.750000" y="-490.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha2+1+1)/2-abs(ptalpha2+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id226" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id151"/>
+        <placeend idref="id187"/>
+        <annot id="id227">
+          <posattr x="520.673077" y="-40.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha3</text>
+        </annot>
+      </arc>
+      <arc id="id228" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id151"/>
+        <placeend idref="id187"/>
+        <annot id="id229">
+          <posattr x="525.096154" y="-70.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id230" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id187"/>
+        <annot id="id231">
+          <posattr x="706.346154" y="-366.153846"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha3</text>
+        </annot>
+      </arc>
+      <arc id="id232" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id187"/>
+        <annot id="id233">
+          <posattr x="727.500000" y="-367.115385"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha3+1+1)/2-abs(ptalpha3+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id234" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id153"/>
+        <placeend idref="id190"/>
+        <annot id="id235">
+          <posattr x="595.192308" y="-248.076923"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha4</text>
+        </annot>
+      </arc>
+      <arc id="id236" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id153"/>
+        <placeend idref="id190"/>
+        <annot id="id237">
+          <posattr x="595.192308" y="-251.153846"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id238" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id190"/>
+        <annot id="id239">
+          <posattr x="626.346154" y="-449.038462"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha4</text>
+        </annot>
+      </arc>
+      <arc id="id240" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id190"/>
+        <annot id="id241">
+          <posattr x="646.346154" y="-624.230769"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha4+1+1)/2-abs(ptalpha4+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id242" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id155"/>
+        <placeend idref="id193"/>
+        <annot id="id243">
+          <posattr x="339.807692" y="-360.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha5</text>
+        </annot>
+      </arc>
+      <arc id="id244" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id155"/>
+        <placeend idref="id193"/>
+        <annot id="id245">
+          <posattr x="336.730769" y="-360.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id246" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id193"/>
+        <annot id="id247">
+          <posattr x="258.653846" y="-430.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha5</text>
+        </annot>
+      </arc>
+      <arc id="id248" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id193"/>
+        <annot id="id249">
+          <posattr x="260.673077" y="-450.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha5+1+1)/2-abs(ptalpha5+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id250" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id157"/>
+        <placeend idref="id196"/>
+        <annot id="id251">
+          <posattr x="517.211538" y="-90.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha6</text>
+        </annot>
+      </arc>
+      <arc id="id252" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id157"/>
+        <placeend idref="id196"/>
+        <annot id="id253">
+          <posattr x="521.634615" y="-120.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id254" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id196"/>
+        <annot id="id255">
+          <posattr x="666.346154" y="-388.076923"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha6</text>
+        </annot>
+      </arc>
+      <arc id="id256" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id196"/>
+        <annot id="id257">
+          <posattr x="686.346154" y="-399.615385"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha6+1+1)/2-abs(ptalpha6+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id258" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id159"/>
+        <placeend idref="id199"/>
+        <annot id="id259">
+          <posattr x="429.423077" y="-480.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha7</text>
+        </annot>
+      </arc>
+      <arc id="id260" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id159"/>
+        <placeend idref="id199"/>
+        <annot id="id261">
+          <posattr x="426.346154" y="-480.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>0</text>
+        </annot>
+      </arc>
+      <arc id="id262" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id199"/>
+        <annot id="id263">
+          <posattr x="306.346154" y="-550.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>ptalpha7</text>
+        </annot>
+      </arc>
+      <arc id="id264" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id199"/>
+        <annot id="id265">
+          <posattr x="308.365385" y="-570.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(ptalpha7+1+1)/2-abs(ptalpha7+1-(1))/2</text>
+        </annot>
+      </arc>
+      <arc id="id266" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id163"/>
+        <annot id="id267">
+          <posattr x="201.442308" y="-350.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelSugar,timerSugar,lbdSugar)</text>
+        </annot>
+      </arc>
+      <arc id="id268" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id163"/>
+        <annot id="id269">
+          <posattr x="203.461538" y="-370.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[timerSugar&gt;=0  andalso  levelSugar=0 andalso  levelSugar-1&gt;=0]((levelSugar-1+1)/2-abs(levelSugar-1-(1))/2,0,(((lbdSugar:1)+1+1)/2-abs((lbdSugar:1)+1-(1))/2,((lbdSugar:2)+1+1)/2-abs((lbdSugar:2)+1-(1))/2))++[timerSugar&gt;=0  andalso  levelSugar=0 andalso  levelSugar-1&lt;0](0,0,(((lbdSugar:1)+1+1)/2-abs((lbdSugar:1)+1-(1))/2,((lbdSugar:2)+1+1)/2-abs((lbdSugar:2)+1-(1))/2))++[timerSugar&lt;0  andalso  levelSugar=0](levelSugar,timerSugar+1,(((lbdSugar:1)+1+1)/2-abs((lbdSugar:1)+1-(1))/2,((lbdSugar:2)+1+1)/2-abs((lbdSugar:2)+1-(1))/2))++[timerSugar&gt;=2  andalso  levelSugar=1 andalso  levelSugar-1&gt;=0]((levelSugar-1+1)/2-abs(levelSugar-1-(1))/2,0,(((lbdSugar:1)+1+1)/2-abs((lbdSugar:1)+1-(1))/2,0))++[timerSugar&gt;=2  andalso  levelSugar=1 andalso  levelSugar-1&lt;0](0,0,(((lbdSugar:1)+1+1)/2-abs((lbdSugar:1)+1-(1))/2,0))++[timerSugar&lt;2  andalso  levelSugar=1](levelSugar,timerSugar+1,(((lbdSugar:1)+1+1)/2-abs((lbdSugar:1)+1-(1))/2,((lbdSugar:2)+1+1)/2-abs((lbdSugar:2)+1-(1))/2))</text>
+        </annot>
+      </arc>
+      <arc id="id270" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id166"/>
+        <annot id="id271">
+          <posattr x="188.461538" y="-680.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelAspartame,timerAspartame,lbdAspartame)</text>
+        </annot>
+      </arc>
+      <arc id="id272" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id166"/>
+        <annot id="id273">
+          <posattr x="185.384615" y="-680.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[timerAspartame&gt;=0  andalso  levelAspartame=0 andalso  levelAspartame-1&gt;=0]((levelAspartame-1+1)/2-abs(levelAspartame-1-(1))/2,0,(((lbdAspartame:1)+1+1)/2-abs((lbdAspartame:1)+1-(1))/2,((lbdAspartame:2)+1+1)/2-abs((lbdAspartame:2)+1-(1))/2))++[timerAspartame&gt;=0  andalso  levelAspartame=0 andalso  levelAspartame-1&lt;0](0,0,(((lbdAspartame:1)+1+1)/2-abs((lbdAspartame:1)+1-(1))/2,((lbdAspartame:2)+1+1)/2-abs((lbdAspartame:2)+1-(1))/2))++[timerAspartame&lt;0  andalso  levelAspartame=0](levelAspartame,timerAspartame+1,(((lbdAspartame:1)+1+1)/2-abs((lbdAspartame:1)+1-(1))/2,((lbdAspartame:2)+1+1)/2-abs((lbdAspartame:2)+1-(1))/2))++[timerAspartame&gt;=2  andalso  levelAspartame=1 andalso  levelAspartame-1&gt;=0]((levelAspartame-1+1)/2-abs(levelAspartame-1-(1))/2,0,(((lbdAspartame:1)+1+1)/2-abs((lbdAspartame:1)+1-(1))/2,0))++[timerAspartame&gt;=2  andalso  levelAspartame=1 andalso  levelAspartame-1&lt;0](0,0,(((lbdAspartame:1)+1+1)/2-abs((lbdAspartame:1)+1-(1))/2,0))++[timerAspartame&lt;2  andalso  levelAspartame=1](levelAspartame,timerAspartame+1,(((lbdAspartame:1)+1+1)/2-abs((lbdAspartame:1)+1-(1))/2,((lbdAspartame:2)+1+1)/2-abs((lbdAspartame:2)+1-(1))/2))</text>
+        </annot>
+      </arc>
+      <arc id="id274" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id169"/>
+        <annot id="id275">
+          <posattr x="505.192308" y="-416.346154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id276" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id169"/>
+        <annot id="id277">
+          <posattr x="364.519231" y="-610.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[timerGlycemia&gt;=0  andalso  levelGlycemia=0 andalso  levelGlycemia-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&gt;=0  andalso  levelGlycemia=0 andalso  levelGlycemia-1&lt;0](0,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&lt;0  andalso  levelGlycemia=0](levelGlycemia,timerGlycemia+1,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&gt;=8  andalso  levelGlycemia=1 andalso  levelGlycemia-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,0,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&gt;=8  andalso  levelGlycemia=1 andalso  levelGlycemia-1&lt;0](0,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,0,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&lt;8  andalso  levelGlycemia=1](levelGlycemia,timerGlycemia+1,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&gt;=8  andalso  levelGlycemia=2 andalso  levelGlycemia-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,0,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&gt;=8  andalso  levelGlycemia=2 andalso  levelGlycemia-1&lt;0](0,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,0,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&lt;8  andalso  levelGlycemia=2](levelGlycemia,timerGlycemia+1,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))++[timerGlycemia&gt;=8  andalso  levelGlycemia=3 andalso  levelGlycemia-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,0))++[timerGlycemia&gt;=8  andalso  levelGlycemia=3 andalso  levelGlycemia-1&lt;0](0,0,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,0))++[timerGlycemia&lt;8  andalso  levelGlycemia=3](levelGlycemia,timerGlycemia+1,(((lbdGlycemia:1)+1+1)/2-abs((lbdGlycemia:1)+1-(1))/2,((lbdGlycemia:2)+1+1)/2-abs((lbdGlycemia:2)+1-(1))/2,((lbdGlycemia:3)+1+1)/2-abs((lbdGlycemia:3)+1-(1))/2,((lbdGlycemia:4)+1+1)/2-abs((lbdGlycemia:4)+1-(1))/2))</text>
+        </annot>
+      </arc>
+      <arc id="id278" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id172"/>
+        <annot id="id279">
+          <posattr x="292.692308" y="-510.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlucagon,timerGlucagon,lbdGlucagon)</text>
+        </annot>
+      </arc>
+      <arc id="id280" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id172"/>
+        <annot id="id281">
+          <posattr x="294.711538" y="-530.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[timerGlucagon&gt;=0  andalso  levelGlucagon=0 andalso  levelGlucagon-1&gt;=0]((levelGlucagon-1+1)/2-abs(levelGlucagon-1-(1))/2,0,(((lbdGlucagon:1)+1+1)/2-abs((lbdGlucagon:1)+1-(1))/2,((lbdGlucagon:2)+1+1)/2-abs((lbdGlucagon:2)+1-(1))/2))++[timerGlucagon&gt;=0  andalso  levelGlucagon=0 andalso  levelGlucagon-1&lt;0](0,0,(((lbdGlucagon:1)+1+1)/2-abs((lbdGlucagon:1)+1-(1))/2,((lbdGlucagon:2)+1+1)/2-abs((lbdGlucagon:2)+1-(1))/2))++[timerGlucagon&lt;0  andalso  levelGlucagon=0](levelGlucagon,timerGlucagon+1,(((lbdGlucagon:1)+1+1)/2-abs((lbdGlucagon:1)+1-(1))/2,((lbdGlucagon:2)+1+1)/2-abs((lbdGlucagon:2)+1-(1))/2))++[timerGlucagon&gt;=3  andalso  levelGlucagon=1 andalso  levelGlucagon-1&gt;=0]((levelGlucagon-1+1)/2-abs(levelGlucagon-1-(1))/2,0,(((lbdGlucagon:1)+1+1)/2-abs((lbdGlucagon:1)+1-(1))/2,0))++[timerGlucagon&gt;=3  andalso  levelGlucagon=1 andalso  levelGlucagon-1&lt;0](0,0,(((lbdGlucagon:1)+1+1)/2-abs((lbdGlucagon:1)+1-(1))/2,0))++[timerGlucagon&lt;3  andalso  levelGlucagon=1](levelGlucagon,timerGlucagon+1,(((lbdGlucagon:1)+1+1)/2-abs((lbdGlucagon:1)+1-(1))/2,((lbdGlucagon:2)+1+1)/2-abs((lbdGlucagon:2)+1-(1))/2))</text>
+        </annot>
+      </arc>
+      <arc id="id282" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id175"/>
+        <annot id="id283">
+          <posattr x="131.634615" y="-590.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+      <arc id="id284" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id161"/>
+        <placeend idref="id175"/>
+        <annot id="id285">
+          <posattr x="190.384615" y="-408.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[timerInsulin&gt;=0  andalso  levelInsulin=0 andalso  levelInsulin-1&gt;=0]((levelInsulin-1+2)/2-abs(levelInsulin-1-(2))/2,0,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))++[timerInsulin&gt;=0  andalso  levelInsulin=0 andalso  levelInsulin-1&lt;0](0,0,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))++[timerInsulin&lt;0  andalso  levelInsulin=0](levelInsulin,timerInsulin+1,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))++[timerInsulin&gt;=3  andalso  levelInsulin=1 andalso  levelInsulin-1&gt;=0]((levelInsulin-1+2)/2-abs(levelInsulin-1-(2))/2,0,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,0,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))++[timerInsulin&gt;=3  andalso  levelInsulin=1 andalso  levelInsulin-1&lt;0](0,0,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,0,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))++[timerInsulin&lt;3  andalso  levelInsulin=1](levelInsulin,timerInsulin+1,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))++[timerInsulin&gt;=3  andalso  levelInsulin=2 andalso  levelInsulin-1&gt;=0]((levelInsulin-1+2)/2-abs(levelInsulin-1-(2))/2,0,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,0))++[timerInsulin&gt;=3  andalso  levelInsulin=2 andalso  levelInsulin-1&lt;0](0,0,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,0))++[timerInsulin&lt;3  andalso  levelInsulin=2](levelInsulin,timerInsulin+1,(((lbdInsulin:1)+1+1)/2-abs((lbdInsulin:1)+1-(1))/2,((lbdInsulin:2)+1+1)/2-abs((lbdInsulin:2)+1-(1))/2,((lbdInsulin:3)+1+1)/2-abs((lbdInsulin:3)+1-(1))/2))</text>
+        </annot>
+      </arc>
+      <arc id="id286" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id175"/>
+        <annot id="id287">
+          <posattr x="165.769231" y="-184.615385"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+      <arc id="id288" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id175"/>
+        <annot id="id289">
+          <posattr x="254.615385" y="-206.923077"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelInsulin=0  andalso  0+1&lt;0](0,0,(lbdInsulin:1,0,lbdInsulin:3))++[levelInsulin=0  andalso  0+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,0,lbdInsulin:3))++[levelInsulin=1  andalso  1+1&lt;0](0,0,(lbdInsulin:1,lbdInsulin:2,0))++[levelInsulin=1  andalso  1+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,lbdInsulin:2,0))++[levelInsulin=2  andalso  2+1&lt;0](0,0,(lbdInsulin:1,lbdInsulin:2,lbdInsulin:3))++[levelInsulin=2  andalso  2+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,lbdInsulin:2,lbdInsulin:3))</text>
+        </annot>
+      </arc>
+      <arc id="id290" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id169"/>
+        <annot id="id291">
+          <posattr x="290.384615" y="-232.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id292" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id169"/>
+        <annot id="id293">
+          <posattr x="330.384615" y="-250.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelGlycemia=0  andalso  0+1&lt;0](0,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=0  andalso  0+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1+1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=1  andalso  1+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=2  andalso  2+1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=2  andalso  2+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=3  andalso  3+1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=3  andalso  3+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))</text>
+        </annot>
+      </arc>
+      <arc id="id294" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id147"/>
+        <placeend idref="id175"/>
+        <annot id="id295">
+          <posattr x="40.000000" y="-445.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+      <arc id="id296" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id147"/>
+        <placeend idref="id175"/>
+        <annot id="id297">
+          <posattr x="61.153846" y="-445.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelInsulin=0  andalso  0+1&lt;0](0,0,(lbdInsulin:1,0,lbdInsulin:3))++[levelInsulin=0  andalso  0+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,0,lbdInsulin:3))++[levelInsulin=1  andalso  1+1&lt;0](0,0,(lbdInsulin:1,lbdInsulin:2,0))++[levelInsulin=1  andalso  1+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,lbdInsulin:2,0))++[levelInsulin=2  andalso  2+1&lt;0](0,0,(lbdInsulin:1,lbdInsulin:2,lbdInsulin:3))++[levelInsulin=2  andalso  2+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,lbdInsulin:2,lbdInsulin:3))</text>
+        </annot>
+      </arc>
+      <arc id="id298" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id149"/>
+        <placeend idref="id172"/>
+        <annot id="id299">
+          <posattr x="402.884615" y="-388.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlucagon,timerGlucagon,lbdGlucagon)</text>
+        </annot>
+      </arc>
+      <arc id="id300" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id149"/>
+        <placeend idref="id172"/>
+        <annot id="id301">
+          <posattr x="386.346154" y="-388.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelGlucagon=0  andalso  0+1&lt;0](0,0,(lbdGlucagon:1,0))++[levelGlucagon=0  andalso  0+1&gt;=0]((levelGlucagon+1+1)/2-abs(levelGlucagon+1-(1))/2,0,(lbdGlucagon:1,0))++[levelGlucagon=1  andalso  1+1&lt;0](0,0,(lbdGlucagon:1,lbdGlucagon:2))++[levelGlucagon=1  andalso  1+1&gt;=0]((levelGlucagon+1+1)/2-abs(levelGlucagon+1-(1))/2,0,(lbdGlucagon:1,lbdGlucagon:2))</text>
+        </annot>
+      </arc>
+      <arc id="id302" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id151"/>
+        <placeend idref="id175"/>
+        <annot id="id303">
+          <posattr x="75.769231" y="-123.846154"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+      <arc id="id304" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id151"/>
+        <placeend idref="id175"/>
+        <annot id="id305">
+          <posattr x="207.692308" y="-75.769231"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelInsulin=0  andalso  0+1&lt;0](0,0,(lbdInsulin:1,0,lbdInsulin:3))++[levelInsulin=0  andalso  0+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,0,lbdInsulin:3))++[levelInsulin=1  andalso  1+1&lt;0](0,0,(lbdInsulin:1,lbdInsulin:2,0))++[levelInsulin=1  andalso  1+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,lbdInsulin:2,0))++[levelInsulin=2  andalso  2+1&lt;0](0,0,(lbdInsulin:1,lbdInsulin:2,lbdInsulin:3))++[levelInsulin=2  andalso  2+1&gt;=0]((levelInsulin+1+2)/2-abs(levelInsulin+1-(2))/2,0,(lbdInsulin:1,lbdInsulin:2,lbdInsulin:3))</text>
+        </annot>
+      </arc>
+      <arc id="id306" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id153"/>
+        <placeend idref="id169"/>
+        <annot id="id307">
+          <posattr x="457.788462" y="-236.538462"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id308" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id153"/>
+        <placeend idref="id169"/>
+        <annot id="id309">
+          <posattr x="457.788462" y="-233.461538"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelGlycemia=0  andalso  0-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=0  andalso  0-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1-1&lt;0](0,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=2  andalso  2-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=2  andalso  2-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=3  andalso  3-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=3  andalso  3-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))</text>
+        </annot>
+      </arc>
+      <arc id="id310" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id155"/>
+        <placeend idref="id169"/>
+        <annot id="id311">
+          <posattr x="351.346154" y="-280.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id312" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id155"/>
+        <placeend idref="id169"/>
+        <annot id="id313">
+          <posattr x="354.423077" y="-280.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelGlycemia=0  andalso  0-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=0  andalso  0-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1-1&lt;0](0,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=2  andalso  2-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=2  andalso  2-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=3  andalso  3-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=3  andalso  3-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))</text>
+        </annot>
+      </arc>
+      <arc id="id314" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id157"/>
+        <placeend idref="id169"/>
+        <annot id="id315">
+          <posattr x="371.538462" y="-170.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id316" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id157"/>
+        <placeend idref="id169"/>
+        <annot id="id317">
+          <posattr x="380.384615" y="-210.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelGlycemia=0  andalso  0-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=0  andalso  0-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1-1&lt;0](0,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=2  andalso  2-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=2  andalso  2-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=3  andalso  3-1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=3  andalso  3-1&gt;=0]((levelGlycemia-1+3)/2-abs(levelGlycemia-1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))</text>
+        </annot>
+      </arc>
+      <arc id="id318" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id159"/>
+        <placeend idref="id169"/>
+        <annot id="id319">
+          <posattr x="465.192308" y="-340.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id320" orientation="TtoP">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id159"/>
+        <placeend idref="id169"/>
+        <annot id="id321">
+          <posattr x="485.192308" y="-340.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>[levelGlycemia=0  andalso  0+1&lt;0](0,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=0  andalso  0+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,0,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=1  andalso  1+1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=1  andalso  1+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,0,lbdGlycemia:4))++[levelGlycemia=2  andalso  2+1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=2  andalso  2+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,0))++[levelGlycemia=3  andalso  3+1&lt;0](0,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))++[levelGlycemia=3  andalso  3+1&gt;=0]((levelGlycemia+1+3)/2-abs(levelGlycemia+1-(3))/2,0,(lbdGlycemia:1,lbdGlycemia:2,lbdGlycemia:3,lbdGlycemia:4))</text>
+        </annot>
+      </arc>
+      <arc id="id322" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id149"/>
+        <placeend idref="id169"/>
+        <annot id="id323">
+          <posattr x="377.211538" y="-290.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id324" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id151"/>
+        <placeend idref="id169"/>
+        <annot id="id325">
+          <posattr x="351.538462" y="-155.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlycemia,timerGlycemia,lbdGlycemia)</text>
+        </annot>
+      </arc>
+      <arc id="id326" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id145"/>
+        <placeend idref="id163"/>
+        <annot id="id327">
+          <posattr x="240.384615" y="-242.307692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelSugar,timerSugar,lbdSugar)</text>
+        </annot>
+      </arc>
+      <arc id="id328" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id147"/>
+        <placeend idref="id166"/>
+        <annot id="id329">
+          <posattr x="124.807692" y="-720.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelAspartame,timerAspartame,lbdAspartame)</text>
+        </annot>
+      </arc>
+      <arc id="id330" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id157"/>
+        <placeend idref="id175"/>
+        <annot id="id331">
+          <posattr x="78.846154" y="-144.423077"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+      <arc id="id332" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id159"/>
+        <placeend idref="id172"/>
+        <annot id="id333">
+          <posattr x="415.769231" y="-410.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelGlucagon,timerGlucagon,lbdGlucagon)</text>
+        </annot>
+      </arc>
+      <arc id="id334" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id153"/>
+        <placeend idref="id175"/>
+        <annot id="id335">
+          <posattr x="313.173077" y="-170.000000"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+      <arc id="id336" orientation="PtoT">
+        <posattr x="0.000000" y="0.000000"/>
+        <fillattr colour="Navy" pattern="solid" filled="false"/>
+        <lineattr colour="Navy" thick="2" type="solid"/>
+        <textattr colour="Black" bold="false"/>
+        <arrowattr headsize="1.000000" currentcyckle="2"/>
+        <transend idref="id155"/>
+        <placeend idref="id175"/>
+        <annot id="id337">
+          <posattr x="310.384615" y="-244.807692"/>
+          <fillattr colour="White" pattern="solid" filled="false"/>
+          <lineattr colour="Navy" thick="0" type="solid"/>
+          <textattr colour="Navy" bold="false"/>
+          <text>(levelInsulin,timerInsulin,lbdInsulin)</text>
+        </annot>
+      </arc>
+    </page>
+    <instances>
+      <instance id="id0" page="id1"/>
+    </instances>
+    <binders>
+      <cpnbinder id="id338" x="257" y="122" width="2000" height="2000">
+        <sheets>
+          <cpnsheet id="id339" panx="-6.000000" pany="-5.000000" zoom="1.000000" instance="id0">
+            <zorder>
+              <position value="0"/>
+            </zorder>
+          </cpnsheet>
+        </sheets>
+        <zorder>
+          <position value="0"/>
+        </zorder>
+      </cpnbinder>
+    </binders>
+  </cpnet>
+</workspaceElements>

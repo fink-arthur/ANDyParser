@@ -2,6 +2,7 @@
 
 import Colours, Variables, Places, Transitions, Edges, Functions
 import os
+import optparse
 
 class Parser:
     """
@@ -24,15 +25,30 @@ class Parser:
         self.edges = Edges.Edges(self.entities, self.potential, self.mandatory).makeText()
         self.functions = Functions.Functions(self.entities, self.potential, self.mandatory).makeText()
             
-    def makeFile(self):
+    def makeFile(self, output):
         with open("start.txt", 'r') as f:
             start = f.read()
-        with open("test.colextpn", 'w') as f:
+        with open(output, 'w') as f:
             f.write(self.places + self.transitions + self.edges + start + "\n" + self.colours + self.variables + self.functions)
-        return 1
+        return
         
 if __name__ == '__main__':
-    parser = Parser("test2.txt")
-    print(parser.makeFile())
+    parser = optparse.OptionParser()
+    parser.add_option('-i', action = "store", dest = "input", help= "Setting an input file for the parser", default = "test.txt")
+    parser.add_option('-o', action = "store", dest = "output", help = "Setting an output file for the parser", default = "test.colextpn")
+    options, args = parser.parse_args()
+    if (options.input[-4:] == ".txt"):
+        parser = Parser(options.input)
+        i = options.input
+    else:
+        parser = Parser(options.input + ".txt")
+        i = options.input + ".txt"
+    if (options.output[-9:] == ".colextpn"):
+        parser.makeFile(options.output)
+        o = options.output
+    else:
+        parser.makeFile(options.output + ".colextpn")
+        o = options.output + ".colextpn"
     os.remove("places.c")
     os.remove("transitions.c")
+    print("The file " + o + " has been successfully generated from the input " + i)
